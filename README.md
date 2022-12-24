@@ -1,4 +1,5 @@
 # さぷリカバー
+
 ## 画面遷移図
 Figma: https://www.figma.com/file/067vzyD29cW4faCASK19Vz/supprecover?node-id=0%3A1&t=WOujkJdSFB8eMbiM-1
 
