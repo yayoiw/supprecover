@@ -4,7 +4,7 @@
 Figma: https://www.figma.com/file/067vzyD29cW4faCASK19Vz/supprecover?node-id=0%3A1&t=WOujkJdSFB8eMbiM-1
 
 ## ER図
-https://gyazo.com/8937af2dc931217d45b563858ff30075
+https://gyazo.com/bff93ee1cd8d48de74c43e680f0faa15
 
 ■ サービス概要
 
