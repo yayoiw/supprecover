@@ -3,6 +3,9 @@
 ## 画面遷移図
 Figma: https://www.figma.com/file/067vzyD29cW4faCASK19Vz/supprecover?node-id=0%3A1&t=WOujkJdSFB8eMbiM-1
 
+## ER図
+https://gyazo.com/8937af2dc931217d45b563858ff30075
+
 ■ サービス概要
 
   健康診断引っかかった人が診断結果を登録することで
