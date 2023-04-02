@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: 
+  height: 9.99
+  weight: 9.99
+  blood_pressure_up: 1
+  blood_pressure_down: 1
+  total_cholesterol: 1
+  hdl_cholesterol: 1
+  ldl_cheolesterol: 1
+  neutral_fat: 1
+  ast: 1
+  alt: 1
+  gamma_gtp: 1
+
+two:
+  user: 
+  height: 9.99
+  weight: 9.99
+  blood_pressure_up: 1
+  blood_pressure_down: 1
+  total_cholesterol: 1
+  hdl_cholesterol: 1
+  ldl_cheolesterol: 1
+  neutral_fat: 1
+  ast: 1
+  alt: 1
+  gamma_gtp: 1

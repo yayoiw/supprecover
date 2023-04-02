@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_02_115322) do
+ActiveRecord::Schema.define(version: 2023_04_02_120527) do
+
+  create_table "easy_medical_checkups", force: :cascade do |t|
+    t.integer "user_id"
+    t.decimal "height", null: false
+    t.decimal "weight", null: false
+    t.integer "blood_pressure_up", null: false
+    t.integer "blood_pressure_down", null: false
+    t.integer "total_cholesterol", null: false
+    t.integer "hdl_cholesterol", null: false
+    t.integer "ldl_cheolesterol", null: false
+    t.integer "neutral_fat", null: false
+    t.integer "ast", null: false
+    t.integer "alt", null: false
+    t.integer "gamma_gtp", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_easy_medical_checkups_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
