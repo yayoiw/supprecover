@@ -10,4 +10,5 @@ class EasyMedicalCheckup < ApplicationRecord
   validates :ast, numericality: { only_integer: true }
   validates :alt, numericality: { only_integer: true }
   validates :gamma_gtp, numericality: { only_integer: true }
+  belongs_to :user
 end
