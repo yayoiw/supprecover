@@ -1,0 +1,44 @@
+<%= form_with model:@easy_medical_checkup, url: easy_medical_checkup_index_path, local: true do |f| %>
+
+  <%= f.label :age %>
+  <%= f.number_field :age, min: 18, max: 120, step: 1 %>
+
+  <%= f.label :gender %>
+  <%= f.select :gender, EasyMedicalCheckup.genders.keys %>
+
+  <%= f.label :height %>
+  <%= f.number_field :height, min: 140, max: 200 %>
+
+  <%= f.label :weight %>
+  <%= f.number_field :height, min: 40, max: 150 %>
+
+  <%= f.label :blood_pressure_up %>
+  <%= f.number_field :blood_pressure_up, step: 1 %>
+
+  <%= f.label :blood_pressure_down %>
+  <%= f.number_field :blood_pressure_down, step: 1 %>
+
+  <%= f.label :total_cholesterol %>
+  <%= f.number_field :total_cholesterol, step: 1 %>
+
+  <%= f.label :hdl_cholesterol %>
+  <%= f.number_field :hdl_cholesterol, step: 1 %>
+
+  <%= f.label :ldl_cholesterol %>
+  <%= f.number_field :ldl_cholesterol, step: 1 %>
+
+  <%= f.label :neutral_fat %>
+  <%= f.number_field :neutral_fat, step: 1 %>
+
+  <%= f.label :ast %>
+  <%= f.number_field :ast, step: 1 %>
+
+  <%= f.label :alt %>
+  <%= f.number_field :alt, step: 1 %>
+
+  <%= f.label :gamma_gtp %>
+  <%= f.number_field :gamma_gtp, step: 1 %>
+
+  <%= f.submit '送信'%>
+
+<% end %>

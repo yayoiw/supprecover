@@ -1,15 +1,20 @@
 class EasyMedicalCheckupController < ApplicationController
   def index
-    @user = User.find(params[:user_id])
-    @easy_medical_checkup = @user.EasyMedicalCheckup.build
+    @user = User.find_by(name: cookies[:name])
+    @easy_medical_checkup = EasyMedicalCheckup.new
+    @easy_medical_checkup.user_id = @user.id
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @easy_medical_checkup = @user.EasyMedicalCheckup.build(easy_medical_checkup_params)
+    @user = User.find_by(name: cookies[:name])
+    @easy_medical_checkup = EasyMedicalCheckup.new(easy_medical_checkup_params)
+    @easy_medical_checkup.user_id = @user.id
+    if @easy_medical_checkup.save
+      redirect_to root_path 
+    else
+      render :index
+    end
   end
-
-
 
 
   private
