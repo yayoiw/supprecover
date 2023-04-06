@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :redirect_unless_name, only: :index
+  before_action :prohibited_access_before_use, only: :before_use
+  
   def index
   end
 

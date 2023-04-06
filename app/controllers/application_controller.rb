@@ -1,16 +1,16 @@
 class ApplicationController < ActionController::Base
-  before_action :set_name
-  before_action :redirect_unless_name
-
+  add_flash_types :success, :info, :warning, :danger
   private
 
-  def set_name
-    cookies[:name] ||= false
+  def redirect_unless_name
+    unless cookies[:name].present?
+      redirect_to before_use_path
+    end
   end
 
-  def redirect_unless_name
-    unless cookies[:name]
-      redirect_to before_use_path
+  def prohibited_access_before_use
+    if cookies[:name].present?
+      redirect_to root_path, success: 'すでに名前は登録済みです'
     end
   end
 end
