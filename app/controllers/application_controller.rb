@@ -13,4 +13,5 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, success: 'すでに名前は登録済みです'
     end
   end
+
 end

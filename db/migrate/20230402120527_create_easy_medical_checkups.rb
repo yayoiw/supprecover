@@ -2,6 +2,8 @@ class CreateEasyMedicalCheckups < ActiveRecord::Migration[6.1]
   def change
     create_table :easy_medical_checkups do |t|
       t.references :user
+      t.integer :gender, default: 0,  null: false
+      t.integer :age, default: 18,    null: false
       t.decimal :height,              null: false
       t.decimal :weight,              null: false
       t.integer :blood_pressure_up,   null: false

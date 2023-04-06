@@ -10,10 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_02_120527) do
+ActiveRecord::Schema.define(version: 2023_04_06_123437) do
 
   create_table "easy_medical_checkups", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "gender", default: 0, null: false
+    t.integer "age", default: 18, null: false
     t.decimal "height", null: false
     t.decimal "weight", null: false
     t.integer "blood_pressure_up", null: false
@@ -30,10 +32,37 @@ ActiveRecord::Schema.define(version: 2023_04_02_120527) do
     t.index ["user_id"], name: "index_easy_medical_checkups_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "supplement_tags", force: :cascade do |t|
+    t.integer "supplement_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["supplement_id"], name: "index_supplement_tags_on_supplement_id"
+    t.index ["tag_id"], name: "index_supplement_tags_on_tag_id"
+  end
+
+  create_table "supplements", force: :cascade do |t|
     t.string "name", null: false
+    t.integer "price", null: false
+    t.text "description", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "up_or_down", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_users_on_name", unique: true
+  end
+
+  add_foreign_key "supplement_tags", "supplements"
+  add_foreign_key "supplement_tags", "tags"
 end

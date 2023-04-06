@@ -11,4 +11,6 @@ class EasyMedicalCheckup < ApplicationRecord
   validates :alt, numericality: { only_integer: true }
   validates :gamma_gtp, numericality: { only_integer: true }
   belongs_to :user
+  enum gender: {male: 0, female: 1}
+  validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 18, less_than_or_equal_to: 120}
 end
