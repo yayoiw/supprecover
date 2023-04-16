@@ -5,12 +5,64 @@ class EasyMedicalCheckup < ApplicationRecord
   validates :blood_pressure_down, numericality: { only_integer: true }
   validates :total_cholesterol, numericality: { only_integer: true }
   validates :hdl_cholesterol, numericality: { only_integer: true }
-  validates :ldl_cheolesterol, numericality: { only_integer: true }
+  validates :ldl_cholesterol, numericality: { only_integer: true }
   validates :neutral_fat, numericality: { only_integer: true }
   validates :ast, numericality: { only_integer: true }
   validates :alt, numericality: { only_integer: true }
   validates :gamma_gtp, numericality: { only_integer: true }
   belongs_to :user
-  enum gender: {male: 0, female: 1}
-  validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 18, less_than_or_equal_to: 120}
+
+  def bmi
+    (weight / ((height / 100.0) ** 2)).round(1) #BMI ＝ 体重kg ÷ (身長m)2
+  end
+
+  def body_type
+    case bmi
+    when 0...18.5
+      "やせ型"
+    when 18.5...25
+      "標準"
+    when 25...30
+      "肥満(軽)"
+    else
+      "肥満(重)"
+    end
+  end
+
+  def recommended_supplements
+    bad_ranking = {}
+    bad_ranking[:blood_pressure_up] = (self.blood_pressure_up - Rails.configuration.x.reference_values[:blood_pressure_up][:middle]) / Rails.configuration.x.reference_values[:blood_pressure_up][:middle] * 100
+    bad_ranking[:blood_pressure_down] = (self.blood_pressure_down - Rails.configuration.x.reference_values[:blood_pressure_down][:middle]) / Rails.configuration.x.reference_values[:blood_pressure_down][:middle] * 100
+    bad_ranking[:total_cholesterol] = (self.total_cholesterol - Rails.configuration.x.reference_values[:total_cholesterol][:middle]) / Rails.configuration.x.reference_values[:total_cholesterol][:middle] * 100
+    bad_ranking[:hdl_cholesterol] = (self.hdl_cholesterol - Rails.configuration.x.reference_values[:hdl_cholesterol][:middle]) / Rails.configuration.x.reference_values[:hdl_cholesterol][:middle] * 100
+    bad_ranking[:ldl_cholesterol] = (self.ldl_cholesterol - Rails.configuration.x.reference_values[:ldl_cholesterol][:middle]) / Rails.configuration.x.reference_values[:ldl_cholesterol][:middle] * 100
+    bad_ranking[:neutral_fat] = (self.neutral_fat - Rails.configuration.x.reference_values[:neutral_fat][:middle]) / Rails.configuration.x.reference_values[:neutral_fat][:middle] * 100
+    bad_ranking[:ast] = (self.ast - Rails.configuration.x.reference_values[:ast][:middle]) / Rails.configuration.x.reference_values[:ast][:middle] * 100
+    bad_ranking[:alt] = (self.alt - Rails.configuration.x.reference_values[:alt][:middle]) / Rails.configuration.x.reference_values[:alt][:middle] * 100
+    bad_ranking[:gamma_gtp] = (self.gamma_gtp - Rails.configuration.x.reference_values[:gamma_gtp][:middle]) / Rails.configuration.x.reference_values[:gamma_gtp][:middle] * 100
+
+    sorted_bad_rankings = bad_ranking.sort_by { |_key, value| -value }
+
+    recommendations = []
+
+    sorted_bad_rankings.each do |key, value|
+      up_or_down = value > 0 ? 'downtoup' : 'uptodown'
+      recommendations += Tag.where(name: key.to_s, up_or_down: up_or_down).map(&:supplements)
+    end
+        
+    if body_type == "やせ型"
+      weight_tag = Tag.find_by(name: "weight", up_or_down: 1)
+    elsif body_type == "肥満(軽)" || body_type == "肥満(重)"
+      weight_tag = Tag.find_by(name: "weight", up_or_down: 0)
+    end
+
+    if weight_tag
+      recommendations += weight_tag.supplements
+    end
+    
+    recommendations.flatten!
+    recommendations.uniq!
+    Supplement.where(id: recommendations.map(&:id))
+
+  end
 end

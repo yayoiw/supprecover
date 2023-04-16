@@ -5,7 +5,7 @@
 <br>
 <br>
 
-<!-- Modal -->
+
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
@@ -33,15 +33,7 @@
 さぷリカバーは健康診断の記録を入れることで、
 あなたにあったサプリをおすすめしてくれます。
 
-<% if @user.errors.any? %>
-  <div class="alert alert-danger">
-    <ul class="list-unstyled">
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render 'layouts/error_message', object: @user %>
 
 <%= form_with model:@user, local: true do |f| %>
 

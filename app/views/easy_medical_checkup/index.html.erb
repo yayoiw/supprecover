@@ -1,44 +1,62 @@
-<%= form_with model:@easy_medical_checkup, url: easy_medical_checkup_index_path, local: true do |f| %>
+<%= render 'layouts/error_message', object: @easy_medical_checkup %>
+<div style="width: 75%; margin: 0 auto;">
+  <%= form_with model:@easy_medical_checkup, url: easy_medical_checkup_index_path, local: true do |f| %>
+    <div class="form-group mb-4">
+    <%= f.label :height %>
+    <%= f.select :height, 140..200, {}, {class: "form-control"}%>
+    </div>
 
-  <%= f.label :age %>
-  <%= f.number_field :age, min: 18, max: 120, step: 1 %>
+    <div class="form-group mb-4">
+    <%= f.label :weight %>
+    <%= f.select :weight, 40..150, {}, {class: "form-control"}%>
+    </div>
 
-  <%= f.label :gender %>
-  <%= f.select :gender, EasyMedicalCheckup.genders.keys %>
+    <div class="form-group mb-4">
+    <%= f.label :blood_pressure_up %>
+    <%= f.text_field :blood_pressure_up, class: "form-control" %>
+    </div>
 
-  <%= f.label :height %>
-  <%= f.number_field :height, min: 140, max: 200 %>
+    <div class="form-group mb-4">
+    <%= f.label :blood_pressure_down %>
+    <%= f.text_field :blood_pressure_down, class: "form-control" %>
+    </div>
 
-  <%= f.label :weight %>
-  <%= f.number_field :height, min: 40, max: 150 %>
+    <div class="form-group mb-4">
+    <%= f.label :total_cholesterol %>
+    <%= f.text_field :total_cholesterol, class: "form-control" %>
+    </div>
 
-  <%= f.label :blood_pressure_up %>
-  <%= f.number_field :blood_pressure_up, step: 1 %>
+    <div class="form-group mb-4">
+    <%= f.label :hdl_cholesterol %>
+    <%= f.text_field :hdl_cholesterol, class: "form-control" %>
+    </div>
 
-  <%= f.label :blood_pressure_down %>
-  <%= f.number_field :blood_pressure_down, step: 1 %>
+    <div class="form-group mb-4">
+    <%= f.label :ldl_cholesterol %>
+    <%= f.text_field :ldl_cholesterol,class: "form-control" %>
+    </div>
 
-  <%= f.label :total_cholesterol %>
-  <%= f.number_field :total_cholesterol, step: 1 %>
+    <div class="form-group mb-4">
+    <%= f.label :neutral_fat %>
+    <%= f.text_field :neutral_fat, class: "form-control" %>
+    </div>
 
-  <%= f.label :hdl_cholesterol %>
-  <%= f.number_field :hdl_cholesterol, step: 1 %>
+    <div class="form-group mb-4">
+    <%= f.label :ast %>
+    <%= f.text_field :ast, class: "form-control" %>
+    </div>
 
-  <%= f.label :ldl_cholesterol %>
-  <%= f.number_field :ldl_cholesterol, step: 1 %>
+    <div class="form-group mb-4">
+    <%= f.label :alt %>
+    <%= f.text_field :alt, class: "form-control" %>
+    </div>
 
-  <%= f.label :neutral_fat %>
-  <%= f.number_field :neutral_fat, step: 1 %>
+    <div class="form-group mb-4">
+    <%= f.label :gamma_gtp %>
+    <%= f.text_field :gamma_gtp, class: "form-control" %>
+    </div>
 
-  <%= f.label :ast %>
-  <%= f.number_field :ast, step: 1 %>
+    <%= f.submit '送信', class: 'btn btn-primary' %>
 
-  <%= f.label :alt %>
-  <%= f.number_field :alt, step: 1 %>
-
-  <%= f.label :gamma_gtp %>
-  <%= f.number_field :gamma_gtp, step: 1 %>
-
-  <%= f.submit '送信'%>
-
-<% end %>
+  <% end %>
+</div>

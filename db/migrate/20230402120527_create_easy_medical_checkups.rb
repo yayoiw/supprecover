@@ -10,7 +10,7 @@ class CreateEasyMedicalCheckups < ActiveRecord::Migration[6.1]
       t.integer :blood_pressure_down, null: false
       t.integer :total_cholesterol,   null: false
       t.integer :hdl_cholesterol,     null: false
-      t.integer :ldl_cheolesterol,    null: false
+      t.integer :ldl_cholesterol,     null: false
       t.integer :neutral_fat,         null: false
       t.integer :ast,                 null: false
       t.integer :alt,                 null: false
