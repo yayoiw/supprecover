@@ -1,14 +1,13 @@
 class EasyMedicalCheckupController < ApplicationController
-include EasyMedicalCheckupHelper
 
   def index
-    @user = User.find_by(name: cookies[:name])
+    @user = User.find_by(name: session[:name])
     @easy_medical_checkup = EasyMedicalCheckup.new
     @easy_medical_checkup.user_id = @user.id
   end
 
   def create
-    @user = User.find_by(name: cookies[:name])
+    @user = User.find_by(name: session[:name])
     @easy_medical_checkup = EasyMedicalCheckup.new(easy_medical_checkup_params)
     @easy_medical_checkup.user_id = @user.id
     if @easy_medical_checkup.save
@@ -19,10 +18,9 @@ include EasyMedicalCheckupHelper
   end
 
   def show
-    @user = User.find_by(name: cookies[:name])
+    @user = User.find_by(name: session[:name])
     @easy_medical_checkup = EasyMedicalCheckup.find_by(user_id: @user.id)
     @recommended_supplements = @easy_medical_checkup.recommended_supplements
-    byebug
   end
 
 
