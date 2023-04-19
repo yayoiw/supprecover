@@ -1,0 +1,24 @@
+ja:
+  activerecord:
+    models:
+      user: 'ユーザー'
+      supplement: 'サプリメント'
+      easy_medical_checkup: '簡易版'
+    attributes:
+      user:
+        name: '名前'
+      supplement:
+        name: '種類'
+        description: '説明'
+      easy_medical_checkup:
+        height: '身長'
+        weight: '体重'
+        blood_pressure_up: '血圧(上)'
+        blood_pressure_down: '血圧(下)'
+        total_cholesterol: '総コレステロール'
+        hdl_cholesterol: 'HDLコレステロール'
+        ldl_cholesterol: 'LDLコレステロール'
+        neutral_fat: '中性脂肪'
+        ast: 'AST'
+        alt: 'ALT'
+        gamma_gtp: 'γ-GTP'
