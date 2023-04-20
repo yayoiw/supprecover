@@ -23,8 +23,6 @@ class EasyMedicalCheckupController < ApplicationController
     @recommended_supplements = @easy_medical_checkup.recommended_supplements
   end
 
-
-
   private
 
   def easy_medical_checkup_params

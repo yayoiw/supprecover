@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :redirect_unless_name, only: :index
+  before_action :redirect_unless_name
   before_action :blocking_access_before_use, only: :before_use
   
   def index
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:name] = @user.name  
+      session[:name] = @user.name
       redirect_to root_path
     else
       render :before_use

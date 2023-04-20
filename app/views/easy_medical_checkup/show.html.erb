@@ -11,8 +11,6 @@
 なお、サプリメントは栄養補助食品です。
 日常の生活を見直しつつ、健康維持のために補助として使っていきましょう。
 
-<% result_for_tweet = "@easy_medical_checkup.user.nameさんへのおすすめサプリは！！！、＃＃＃、％％％です！" %>
+<% result_for_tweet = "#{@easy_medical_checkup.user.name}さんへのおすすめサプリは！！！、＃＃＃、％％％です！診断結果をチェックしてみてね！" %>
 
-<% tweet_text = "#{result_for_tweet} 診断結果をチェックしてみてね！" %>
-
-<%= link_to "ツイッターでつぶやく", "https://twitter.com/", target: "_blank" %>
+<%= link_to "ツイッターでつぶやく", "https://twitter.com/intent/tweet?text=#{result_for_tweet}", target: "_blank" %>
