@@ -3,12 +3,12 @@
   <%= form_with model:@easy_medical_checkup, url: easy_medical_checkup_index_path, local: true do |f| %>
     <div class="form-group mb-4">
     <%= f.label :height, EasyMedicalCheckup.human_attribute_name(:height) %>
-    <%= f.select :height, 140..200, {}, {class: "form-control"}%>
+    <%= f.select :height, 140..200,{ include_blank: '選択して下さい' }, {class: "form-control"}%>
     </div>
 
     <div class="form-group mb-4">
     <%= f.label :weight, EasyMedicalCheckup.human_attribute_name(:weight) %>
-    <%= f.select :weight, 40..150, {}, {class: "form-control"}%>
+    <%= f.select :weight, 40..150,{ include_blank: '選択して下さい' }, {class: "form-control"}%>
     </div>
 
     <div class="form-group mb-4">
