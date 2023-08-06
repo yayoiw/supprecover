@@ -29,18 +29,65 @@ class EasyMedicalCheckup < ApplicationRecord
     end
   end
 
+
+
   def recommended_supplements
     bad_ranking = {}
-    bad_ranking[:blood_pressure_up] = (self.blood_pressure_up - Rails.configuration.x.reference_values[:blood_pressure_up][:middle]) / Rails.configuration.x.reference_values[:blood_pressure_up][:middle] * 100
-    bad_ranking[:blood_pressure_down] = (self.blood_pressure_down - Rails.configuration.x.reference_values[:blood_pressure_down][:middle]) / Rails.configuration.x.reference_values[:blood_pressure_down][:middle] * 100
-    bad_ranking[:total_cholesterol] = (self.total_cholesterol - Rails.configuration.x.reference_values[:total_cholesterol][:middle]) / Rails.configuration.x.reference_values[:total_cholesterol][:middle] * 100
-    bad_ranking[:hdl_cholesterol] = (self.hdl_cholesterol - Rails.configuration.x.reference_values[:hdl_cholesterol][:middle]) / Rails.configuration.x.reference_values[:hdl_cholesterol][:middle] * 100
-    bad_ranking[:ldl_cholesterol] = (self.ldl_cholesterol - Rails.configuration.x.reference_values[:ldl_cholesterol][:middle]) / Rails.configuration.x.reference_values[:ldl_cholesterol][:middle] * 100
-    bad_ranking[:neutral_fat] = (self.neutral_fat - Rails.configuration.x.reference_values[:neutral_fat][:middle]) / Rails.configuration.x.reference_values[:neutral_fat][:middle] * 100
-    bad_ranking[:ast] = (self.ast - Rails.configuration.x.reference_values[:ast][:middle]) / Rails.configuration.x.reference_values[:ast][:middle] * 100
-    bad_ranking[:alt] = (self.alt - Rails.configuration.x.reference_values[:alt][:middle]) / Rails.configuration.x.reference_values[:alt][:middle] * 100
-    bad_ranking[:gamma_gtp] = (self.gamma_gtp - Rails.configuration.x.reference_values[:gamma_gtp][:middle]) / Rails.configuration.x.reference_values[:gamma_gtp][:middle] * 100
+    if self.blood_pressure_up > Rails.configuration.x.reference_values[:blood_pressure_up][:max]
+      bad_ranking[:blood_pressure_up] = (self.blood_pressure_up.to_f / Rails.configuration.x.reference_values[:blood_pressure_up][:max]) * 100
+    elsif self.blood_pressure_up < Rails.configuration.x.reference_values[:blood_pressure_up][:min]
+      bad_ranking[:blood_pressure_up] = (self.blood_pressure_up.to_f / Rails.configuration.x.reference_values[:blood_pressure_up][:min]) * 100
+    end
 
+    if self.blood_pressure_down > Rails.configuration.x.reference_values[:blood_pressure_down][:max]
+      bad_ranking[:blood_pressure_down] = (self.blood_pressure_down.to_f/ Rails.configuration.x.reference_values[:blood_pressure_down][:max]) * 100
+    elsif self.blood_pressure_down < Rails.configuration.x.reference_values[:blood_pressure_down][:min]
+      bad_ranking[:blood_pressure_down] = (self.blood_pressure_down.to_f / Rails.configuration.x.reference_values[:blood_pressure_down][:min]) * 100
+    end
+
+    if self.total_cholesterol > Rails.configuration.x.reference_values[:total_cholesterol][:max]
+      bad_ranking[:total_cholesterol] = (self.total_cholesterol.to_f / Rails.configuration.x.reference_values[:total_cholesterol][:max]) * 100
+    elsif self.total_cholesterol < Rails.configuration.x.reference_values[:total_cholesterol][:min]
+      bad_ranking[:total_cholesterol] = (self.total_cholesterol.to_f / Rails.configuration.x.reference_values[:total_cholesterol][:min]) * 100
+    end
+
+    if self.hdl_cholesterol > Rails.configuration.x.reference_values[:hdl_cholesterol][:max]
+      bad_ranking[:hdl_cholesterol] = (self.hdl_cholesterol.to_f / Rails.configuration.x.reference_values[:hdl_cholesterol][:max]) * 100
+    elsif self.hdl_cholesterol < Rails.configuration.x.reference_values[:hdl_cholesterol][:min]
+      bad_ranking[:hdl_cholesterol] = (self.hdl_cholesterol.to_f / Rails.configuration.x.reference_values[:hdl_cholesterol][:min]) * 100
+    end
+
+    if self.ldl_cholesterol > Rails.configuration.x.reference_values[:ldl_cholesterol][:max]
+      bad_ranking[:ldl_cholesterol] = (self.ldl_cholesterol.to_f / Rails.configuration.x.reference_values[:ldl_cholesterol][:max]) * 100
+    elsif self.ldl_cholesterol < Rails.configuration.x.reference_values[:ldl_cholesterol][:min]
+      bad_ranking[:ldl_cholesterol] = (self.ldl_cholesterol.to_f / Rails.configuration.x.reference_values[:ldl_cholesterol][:min]) * 100
+    end
+
+    if self.neutral_fat > Rails.configuration.x.reference_values[:neutral_fat][:max]
+      bad_ranking[:neutral_fat] = (self.neutral_fat.to_f / Rails.configuration.x.reference_values[:neutral_fat][:max]) * 100
+    elsif self.neutral_fat < Rails.configuration.x.reference_values[:neutral_fat][:min]
+      bad_ranking[:neutral_fat] = (self.neutral_fat.to_f / Rails.configuration.x.reference_values[:neutral_fat][:min]) * 100
+    end
+
+    if self.ast > Rails.configuration.x.reference_values[:ast][:max]
+      bad_ranking[:ast] = (self.ast.to_f / Rails.configuration.x.reference_values[:ast][:max]) * 100
+    elsif self.ast < Rails.configuration.x.reference_values[:ast][:min]
+      bad_ranking[:ast] = (self.ast.to_f / Rails.configuration.x.reference_values[:ast][:min]) * 100
+    end
+
+    if self.alt > Rails.configuration.x.reference_values[:alt][:max]
+      bad_ranking[:alt] = (self.alt.to_f / Rails.configuration.x.reference_values[:alt][:max]) * 100
+    elsif self.alt < Rails.configuration.x.reference_values[:alt][:min]
+      bad_ranking[:alt] = (self.alt.to_f / Rails.configuration.x.reference_values[:alt][:min]) * 100
+    end
+
+    if self.gamma_gtp > Rails.configuration.x.reference_values[:gamma_gtp][:max]
+      bad_ranking[:gamma_gtp] = (self.gamma_gtp.to_f / Rails.configuration.x.reference_values[:gamma_gtp][:max]) * 100
+    elsif self.gamma_gtp < Rails.configuration.x.reference_values[:gamma_gtp][:min]
+      bad_ranking[:gamma_gtp] = (self.gamma_gtp.to_f / Rails.configuration.x.reference_values[:gamma_gtp][:min]) * 100
+    end
+
+    
     sorted_bad_rankings = bad_ranking.sort_by { |_key, value| -value }
 
     recommendations = []
@@ -63,6 +110,5 @@ class EasyMedicalCheckup < ApplicationRecord
     recommendations.flatten!
     recommendations.uniq!
     Supplement.where(id: recommendations.map(&:id))
-
   end
 end

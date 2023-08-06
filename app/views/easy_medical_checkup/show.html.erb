@@ -13,4 +13,8 @@
 
 <% result_for_tweet = "#{@easy_medical_checkup.user.name}さんへのおすすめサプリは！！！、＃＃＃、％％％です！診断結果をチェックしてみてね！" %>
 
-<%= link_to "ツイッターでつぶやく", "https://twitter.com/intent/tweet?text=#{result_for_tweet}", target: "_blank" %>
+
+<%= link_to "https://twitter.com/intent/tweet?text=#{result_for_tweet}", target: "_blank" do %>
+  <%= image_tag "https://logowik.com/content/uploads/images/twitter-x-icon3832.logowik.com.webp",alt: "Twitter Logo", width: 35, height: 35 %>
+  X(twitter)でつぶやく
+<% end %>

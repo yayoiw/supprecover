@@ -1,4 +1,7 @@
 ja:
+  errors:
+    messages:
+      not_a_number: "は半角数字で入力してください"
   activerecord:
     models:
       user: 'ユーザー'
@@ -22,3 +25,10 @@ ja:
         ast: 'AST'
         alt: 'ALT'
         gamma_gtp: 'γ-GTP'
+  users:
+    index:
+      warning:
+        no_name: '名前を登録してください'
+    before_use:
+      warning:
+        name_exist: '既に名前は登録済みです'

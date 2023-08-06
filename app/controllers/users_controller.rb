@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :redirect_unless_name
+  before_action :redirect_unless_name, except: [:before_use, :create, :about, :terms_of_use, :privacy_policy]
   before_action :blocking_access_before_use, only: :before_use
   
   def index
@@ -23,6 +23,12 @@ class UsersController < ApplicationController
     else
       render :before_use
     end
+  end
+
+  def terms_of_use
+  end
+
+  def privacy_policy
   end
 
   private

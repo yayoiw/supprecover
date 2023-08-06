@@ -4,13 +4,13 @@ class ApplicationController < ActionController::Base
 
   def redirect_unless_name
     unless session[:name].present?
-      redirect_to before_use_path, success: '名前を登録してください'
+      redirect_to before_use_path, warning: t('.warning.no_name')
     end
   end
 
   def blocking_access_before_use
     if session[:name].present?
-      redirect_to root_path, success: '既に名前は登録済みです'
+      redirect_to root_path, warning: t('.warning.name_exist') 
     end
   end
 
