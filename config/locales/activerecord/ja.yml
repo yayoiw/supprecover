@@ -31,4 +31,4 @@ ja:
         no_name: '名前を登録してください'
     before_use:
       warning:
-        name_exist: '既に名前は登録済みです'
+        name_exist: '既に登録済みの名前です'

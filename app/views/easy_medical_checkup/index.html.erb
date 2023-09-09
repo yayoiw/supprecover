@@ -1,6 +1,5 @@
 <%= render 'shared/error_message', object: @easy_medical_checkup %>
-<div style="width: 75%; margin: 0 auto;">
-  <%= form_with model:@easy_medical_checkup, url: easy_medical_checkup_index_path, local: true do |f| %>
+  <%= form_with model:@easy_medical_checkup, url: easy_medical_checkup_index_path, local: true, class: "checkup_form" do |f| %>
     <div class="form-group mb-4">
     <%= f.label :height, EasyMedicalCheckup.human_attribute_name(:height) %>
     <%= f.select :height, 140..200,{ include_blank: '選択して下さい' }, {class: "form-control"}%>
@@ -59,4 +58,3 @@
     <%= f.submit '送信', class: 'btn btn-primary' %>
 
   <% end %>
-</div>

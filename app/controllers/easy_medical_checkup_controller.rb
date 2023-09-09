@@ -21,6 +21,14 @@ class EasyMedicalCheckupController < ApplicationController
     @user = User.find_by(name: session[:name])
     @easy_medical_checkup = EasyMedicalCheckup.find_by(user_id: @user.id)
     @recommended_supplements = @easy_medical_checkup.recommended_supplements
+    supplement_names = @recommended_supplements.map(&:name).join('、')
+    @tweet_template = "#{@easy_medical_checkup.user.name}さんへのおすすめサプリは、#{supplement_names}です！診断結果をチェックしてみてね！"
+    if @tweet_template.length > 280
+      truncated_text = tweet_template[0..276] + "..."
+      @result_for_tweet = truncated_text
+    else
+      @result_for_tweet = @tweet_template
+    end
   end
 
   private

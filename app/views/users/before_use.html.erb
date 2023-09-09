@@ -20,12 +20,11 @@
     </div>
   </div>
 </div>
-
+<%= render 'shared/error_message', object: @user %>
 <div class="m-5">
   さぷリカバーは健康診断の記録を入れることで、あなたにあったサプリをおすすめしてくれます。<br>
   <div class="m-3">
-  <%= render 'shared/error_message', object: @user %>
-
+  
   <%= form_with model:@user, local: true do |f| %>
 
     <%= f.label :name %>

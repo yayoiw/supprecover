@@ -30,7 +30,6 @@ class EasyMedicalCheckup < ApplicationRecord
   end
 
 
-
   def recommended_supplements
     bad_ranking = {}
     if self.blood_pressure_up > Rails.configuration.x.reference_values[:blood_pressure_up][:max]
@@ -87,16 +86,15 @@ class EasyMedicalCheckup < ApplicationRecord
       bad_ranking[:gamma_gtp] = (self.gamma_gtp.to_f / Rails.configuration.x.reference_values[:gamma_gtp][:min]) * 100
     end
 
-    
-    sorted_bad_rankings = bad_ranking.sort_by { |_key, value| -value }
+    sorted_bad_rankings = bad_ranking.sort_by { |_key, value| -(value - 100).abs }.to_h
 
     recommendations = []
 
     sorted_bad_rankings.each do |key, value|
-      up_or_down = value > 0 ? 'downtoup' : 'uptodown'
-      recommendations += Tag.where(name: key.to_s, up_or_down: up_or_down).map(&:supplements)
+      up_or_down = value > 100 ? 'uptodown' : 'downtoup'
+      recommendations += Tag.where(name: key, up_or_down: up_or_down).map(&:supplements)
     end
-        
+
     if body_type == "やせ型"
       weight_tag = Tag.find_by(name: "weight", up_or_down: 1)
     elsif body_type == "肥満(軽)" || body_type == "肥満(重)"
@@ -106,7 +104,7 @@ class EasyMedicalCheckup < ApplicationRecord
     if weight_tag
       recommendations += weight_tag.supplements
     end
-    
+
     recommendations.flatten!
     recommendations.uniq!
     Supplement.where(id: recommendations.map(&:id))
