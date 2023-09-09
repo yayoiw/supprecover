@@ -1,0 +1,2 @@
+class FullMedicalCheckup < ApplicationRecord
+end
