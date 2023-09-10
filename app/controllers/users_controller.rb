@@ -2,7 +2,9 @@ class UsersController < ApplicationController
   before_action :redirect_unless_name, except: [:before_use, :create, :about, :terms_of_use, :privacy_policy]
   before_action :blocking_access_before_use, only: :before_use
   
-  def index;end
+  def index
+    @user = User.find_by(name: session[:name])
+  end
 
   def about;end
 

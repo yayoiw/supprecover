@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_user
+    @user = User.find_by(name: session[:name])
+  end
+
 end
