@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_15_112236) do
+ActiveRecord::Schema.define(version: 2023_09_09_095720) do
 
   create_table "easy_medical_checkups", force: :cascade do |t|
     t.integer "user_id"
@@ -28,6 +28,24 @@ ActiveRecord::Schema.define(version: 2023_04_15_112236) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_easy_medical_checkups_on_user_id"
+  end
+
+  create_table "full_medical_checkups", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "fasting_blood_sugar", null: false
+    t.decimal "hba1c", null: false
+    t.integer "urine_sugar", null: false
+    t.decimal "uric_acid", null: false
+    t.decimal "creatinine", null: false
+    t.decimal "egfr", null: false
+    t.integer "hematocrit", null: false
+    t.integer "hemoglobin", null: false
+    t.integer "rbc", null: false
+    t.integer "wbc", null: false
+    t.integer "urine_protein", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_full_medical_checkups_on_user_id"
   end
 
   create_table "supplement_tags", force: :cascade do |t|
