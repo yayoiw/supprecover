@@ -1,8 +1,8 @@
 require "test_helper"
 
 class FullMedicalCheckupControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get full_medical_checkup_index_url
+  test "should get new" do
+    get full_medical_checkup_new_url
     assert_response :success
   end
 

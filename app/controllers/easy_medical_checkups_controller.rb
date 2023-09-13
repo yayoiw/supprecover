@@ -20,6 +20,7 @@ class EasyMedicalCheckupsController < ApplicationController
     @easy_medical_checkup = EasyMedicalCheckup.find_by(user_id: @user.id)
     if @easy_medical_checkup.update(easy_medical_checkup_params)
       redirect_to user_easy_medical_checkups_path(@easy_medical_checkup.id)
+      byebug
     else
       render :new
     end
@@ -41,7 +42,7 @@ class EasyMedicalCheckupsController < ApplicationController
   private
 
   def easy_medical_checkup_params
-    params.require(:easy_medical_checkups).permit(:height, :weight, :blood_pressure_up, :blood_pressure_down,
+    params.require(:easy_medical_checkup).permit(:height, :weight, :blood_pressure_up, :blood_pressure_down,
                                                   :total_cholesterol, :hdl_cholesterol, :ldl_cholesterol, :neutral_fat,
                                                   :ast, :alt, :gamma_gtp)
   end
