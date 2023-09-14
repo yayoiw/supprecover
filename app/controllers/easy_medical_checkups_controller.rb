@@ -20,7 +20,6 @@ class EasyMedicalCheckupsController < ApplicationController
     @easy_medical_checkup = EasyMedicalCheckup.find_by(user_id: @user.id)
     if @easy_medical_checkup.update(easy_medical_checkup_params)
       redirect_to user_easy_medical_checkups_path(@easy_medical_checkup.id)
-      byebug
     else
       render :new
     end

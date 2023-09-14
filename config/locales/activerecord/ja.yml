@@ -7,6 +7,7 @@ ja:
       user: 'ユーザー'
       supplement: 'サプリメント'
       easy_medical_checkup: '簡易版'
+      full_medical_checkup: '完全版'
     attributes:
       user:
         name: '名前'
@@ -25,6 +26,18 @@ ja:
         ast: 'AST'
         alt: 'ALT'
         gamma_gtp: 'γ-GTP'
+      full_medical_checkup:
+        fasting_blood_sugar: '空腹時血糖'
+        hba1c: 'HbA1c'
+        urine_sugar: '尿糖'
+        uric_acid: '尿酸値'
+        creatinine: 'クレアチニン'
+        egfr: 'eGFR'
+        hematocrit: 'ヘマトクリット'
+        hemoglobin: 'ヘモグロビン'
+        rbc: '赤血球'
+        wbc: '白血球'
+        urine_protein: '尿タンパク'
   users:
     index:
       warning:
