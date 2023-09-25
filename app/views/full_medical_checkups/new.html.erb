@@ -12,7 +12,7 @@
 
     <div class="form-group mb-4">
     <%= f.label :urine_sugar, FullMedicalCheckup.human_attribute_name(:urine_sugar) %>
-    <%= f.text_field :urine_sugar, class: "form-control" %>
+    <%= f.select :urine_sugar,{'-': 0, '±': 1, '+': 2, '++': 3, '+++': 4},{ include_blank: '選択して下さい' }, class: "form-control" %>
     </div>
 
     <div class="form-group mb-4">
@@ -52,7 +52,7 @@
 
     <div class="form-group mb-4">
     <%= f.label :urine_protein, FullMedicalCheckup.human_attribute_name(:urine_protein) %>
-    <%= f.text_field :urine_protein, class: "form-control" %>
+    <%= f.select :urine_protein,{'-': 0, '±': 1, '+': 2, '++': 3, '+++': 4},{ include_blank: '選択して下さい' }, class: "form-control" %>
     </div>
 
     <%= f.submit '送信', class: 'btn btn-primary' %>
