@@ -1,11 +1,12 @@
-<% if @full_medical_checkup.recommended_supplements.empty? %>
+<% if @full_medical_checkup.recommended_supplements.empty? && @easy_medical_checkup.recommended_supplements.empty? %>
   <p>あなたは現在健康であるため、健康診断数値改善のためのサプリは不要になります。</p>
 <% else %>
   <p>あなたにおすすめのサプリは</p>
-  <% @full_medical_checkup.recommended_supplements.each do |supplement| %>
+  <% @total_supplements.each do |supplement| %>
     <p><%= link_to supplement.name, "https://jp.iherb.com/search?kw=#{supplement.name}", target: "_blank"%></p>
     <p><%= supplement.description %></p>
   <% end %>
+
 <% end %>
 
 
