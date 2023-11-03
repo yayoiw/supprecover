@@ -7,17 +7,7 @@ class EasyMedicalCheckupsController < ApplicationController
   end
 
   def create
-    @easy_medical_checkup = EasyMedicalCheckup.new(easy_medical_checkup_params)
-    @easy_medical_checkup.user_id = @user.id
-    if @easy_medical_checkup.save
-      redirect_to user_easy_medical_checkups_path(@easy_medical_checkup.id)
-    else
-      render :new
-    end
-  end
-
-  def update
-    @easy_medical_checkup = EasyMedicalCheckup.find_by(user_id: @user.id)
+    @easy_medical_checkup = @user.easy_medical_checkup || @user.build_easy_medical_checkup
     if @easy_medical_checkup.update(easy_medical_checkup_params)
       redirect_to user_easy_medical_checkups_path(@easy_medical_checkup.id)
     else
@@ -27,8 +17,8 @@ class EasyMedicalCheckupsController < ApplicationController
 
   def show
     @easy_medical_checkup = EasyMedicalCheckup.find_by(user_id: @user.id)
-    @recommended_supplements = @easy_medical_checkup.recommended_supplements
-    supplement_names = @recommended_supplements.map(&:name).join('、')
+    @recommended_supplements_easy = @easy_medical_checkup.recommended_supplements
+    supplement_names = @recommended_supplements_easy.map(&:name).join('、')
     @tweet_template = "#{@easy_medical_checkup.user.name}さんへのおすすめサプリは、#{supplement_names}です！診断結果をチェックしてみてね！"
     if @tweet_template.length > 280
       truncated_text = tweet_template[0..276] + "..."
