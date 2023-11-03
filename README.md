@@ -2,73 +2,67 @@
 
 
 
+## さぷリカバー
 
-自分用メモ
+■URL
 
-Supplement.create(name:"マグネシウム",description:"マグネシウムには動脈を拡張させる作用があり、血圧を降下させる作用があると言われています。")
-Supplement.create(name:"カリウム",description:"カリウムには体内の余分なナトリウムを排出する作用があり、高血圧予防に役立つと言われています。")
-Supplement.create(name:"コエンザイムQ10",description:"コエンザイムQ10は継続的に服用することで高血圧予防効果があると言われています。")
-Supplement.create(name:"ビタミンB12",description:"ビタミンB12不足が低血圧の原因の一つである場合があります。")
-Supplement.create(name:"鉄",description:"鉄欠乏性貧血は低血圧の原因の一つである可能性があります。")
-Supplement.create(name:"ナイアシン",description:"ナイアシンは総コレステロール値を下げる働きがあると言われています。")
-Supplement.create(name:"オメガ3脂肪酸",description:"オメガ3脂肪酸には高血圧のリスク減少、総コレステロール値、LDLコレステロール値、HDLコレステロール値、中性脂肪を改善する作用が報告されています。")
-Supplement.create(name:"カテキン",description:"カテキンには総コレステロール値、中性脂肪を下げる効果があると言われています。")
-Supplement.create(name:"紅麹",description:"紅麹には総コレステロール値とLDLコレステロール値を下げる効果があると言われています。")
-Supplement.create(name:"プロポリス",description:"プロポリスには抗炎症作用や総コレステロール値の改善可能性があります。")
-Supplement.create(name:"N-アセチルシステイン（NAC）",description:"NACは、グルタチオンという抗酸化物質の生成をサポートし、肝臓のデトックス作用を強化するとされています。AST、ALT、γ-gtpの改善可能性があります。")
-Supplement.create(name:"ミルクシスル(シリマリン)",description:"ミルクシスルは肝臓を保護、再生することで知られており、シリマリンという成分が特に肝臓の機能をサポートすると言われています。AST、ALT、γ-gtpの改善可能性があります。")
-Supplement.create(name:"オルニチン",description:"オルニチンはアミノ酸の一種であり、アンモニアの解毒作用があります。オルニチンは肝臓の解毒作用を助け、肝機能を改善するとされており、γ-GTP値の低下に寄与する可能性があります。")
-Supplement.create(name:"タウリン",description:"タウリンは抗酸化作用や抗炎症作用があり、肝臓のデトックス作用をサポートするとされています。γ-GTP値の低下に寄与する可能性があります。")
-Supplement.create(name:"ターメリック（クルクミン）",description:"ターメリックに含まれるクルクミンは、抗酸化作用や抗炎症作用があり、肝臓の健康をサポートすることが報告されています。AST、ALT、γ-gtpの改善可能性があります。")
-Supplement.create(name:"緑茶エキス（EGCG）",description:"緑茶エキスは、脂肪の代謝を促進し、体重減少に効果があるとされています。")
-Supplement.create(name:"CLA（共役リノール酸）",description:"CLAは脂肪の減少と筋肉の増加を助けると言われています。")
-Supplement.create(name:"プロテイン（タンパク質）",description:"筋肉の成長と修復を促し、体重増加をサポートするために必要です。ホエイプロテインやプラントベースのプロテインが一般的です。")
-Supplement.create(name:"クレアチン",description:"クレアチンは筋肉にエネルギーを供給し、筋肉の成長を助けるとされています。。")
+
+■主な使用技術
+バックエンド
+Ruby(3.0.2) Ruby on Rails(6.1.2)
+
+フロントエンド
+BootStrap,JavaScript
+
+インフラ
+PostgreSQL
+
+■ サービス概要
+
+健康診断引っかかった人が診断結果を登録することで
+次回の健康診断までの間に数値改善できるよう
+おすすめサプリを提案するサービス
 
 
 
+■メインのターゲットユーザー
 
-Tag.create(name:"blood_pressure_up", up_or_down:0)
-Tag.create(name:"blood_pressure_down", up_or_down:1)
-Tag.create(name:"total_cholesterol", up_or_down:0)
-Tag.create(name:"hdl_cholesterol", up_or_down:0)
-Tag.create(name:"ldl_cholesterol", up_or_down:0)
-Tag.create(name:"neutral_fat", up_or_down:0)
-Tag.create(name:"ast", up_or_down:0)
-Tag.create(name:"alt", up_or_down:0)
-Tag.create(name:"gamma_gtp", up_or_down:0)
-Tag.create(name:"weight", up_or_down:0)
-Tag.create(name:"weight", up_or_down:1)
+　健康診断結果がB以下でてっとり早く改善したいと思っている方
 
 
-SupplementTag.create(supplement_id:"1", tag_id:"1")
-SupplementTag.create(supplement_id:"2", tag_id:"1")
-SupplementTag.create(supplement_id:"3", tag_id:"1")
-SupplementTag.create(supplement_id:"4", tag_id:"2")
-SupplementTag.create(supplement_id:"5", tag_id:"2")
-SupplementTag.create(supplement_id:"6", tag_id:"3")
-SupplementTag.create(supplement_id:"7", tag_id:"1")
-SupplementTag.create(supplement_id:"7", tag_id:"3")
-SupplementTag.create(supplement_id:"7", tag_id:"4")
-SupplementTag.create(supplement_id:"7", tag_id:"5")
-SupplementTag.create(supplement_id:"7", tag_id:"6")
-SupplementTag.create(supplement_id:"8", tag_id:"3")
-SupplementTag.create(supplement_id:"8", tag_id:"6")
-SupplementTag.create(supplement_id:"9", tag_id:"3")
-SupplementTag.create(supplement_id:"9", tag_id:"5")
-SupplementTag.create(supplement_id:"10", tag_id:"3")
-SupplementTag.create(supplement_id:"11", tag_id:"7")
-SupplementTag.create(supplement_id:"11", tag_id:"8")
-SupplementTag.create(supplement_id:"11", tag_id:"9")
-SupplementTag.create(supplement_id:"12", tag_id:"7")
-SupplementTag.create(supplement_id:"12", tag_id:"8")
-SupplementTag.create(supplement_id:"12", tag_id:"9")
-SupplementTag.create(supplement_id:"13", tag_id:"9")
-SupplementTag.create(supplement_id:"14", tag_id:"9")
-SupplementTag.create(supplement_id:"15", tag_id:"7")
-SupplementTag.create(supplement_id:"15", tag_id:"8")
-SupplementTag.create(supplement_id:"15", tag_id:"9")
-SupplementTag.create(supplement_id:"16", tag_id:"10")
-SupplementTag.create(supplement_id:"17", tag_id:"10")
-SupplementTag.create(supplement_id:"18", tag_id:"11")
-SupplementTag.create(supplement_id:"19", tag_id:"11")
+
+■ユーザーが抱える課題
+
+診断結果が思わしくなく、食事や運動などの生活改善と同時にサプリを補助的に使用していきたい
+診断結果で複数項目引っかかっている場合、その数だけどんなサプリで改善が期待できるのかを検索する必要がある
+
+■なぜこのサービスを作りたいのか？
+私自身健康診断で一部基準値から外れた際に、どんなサプリだと改善が見込めるのか
+引っかかった項目や上限値ギリギリの項目を一つ一つ調べて検索をしていたが非常に手間であった
+健康診断の結果を入力したらそのままおすすめの改善サプリが出てきたら楽なのに…と考えたことがあったのでPFにしてみようと思った
+
+■解決方法
+
+健康診断結果を入力するだけでおすすめサプリが一覧で提案される
+何を買えばよいかがひとめでわかる
+
+
+
+■実装機能
+
+・利用開始前に免責事項等の注意書きのでるモーダルウィンドウがでる
+  →モーダル内に同意を求めるチェックボックスを含め、チェックをつけた上で同意ボタンをおさないと利用ができない
+・完全版と簡易版の２つの診断
+  →完全版は簡易版利用後に利用可能
+・ユーザーが希望すれば追加アンケートに回答できる
+・ユーザーが回答している際にあとどれくらいで入力が終わるのか、目安がわかるようプログレスバーがでる
+・健診項目入力フォームは数字を入れることができる、もしくはラジオボタンで結果を選択できる(結果なしも含め)
+・全ての項目の入力が終わったら結果を参照できる(おすすめサプリが出てくる)
+・結果をX（Twitter）でシェアできる
+
+
+
+　■画面遷移図
+
+　■ER図
+
