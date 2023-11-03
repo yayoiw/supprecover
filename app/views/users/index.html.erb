@@ -3,9 +3,18 @@
     あなたにあったサプリをおすすめしてくれます。
   </div>
   <div class="m-5">
+  <% if @user.easy_medical_checkup.present? %>
+      <%= link_to '簡易版', new_user_easy_medical_checkups_path(@user), class:'btn btn-success btn-lg' %>
+      検診結果を一部いれる（所要時間3分）
+    <br>
     <%= link_to '完全版', new_user_full_medical_checkups_path(@user), class:'btn btn-primary btn-lg' %>
     検診結果を全部いれる（所要時間5分）
+  <% else %>
+      <%= link_to '簡易版', new_user_easy_medical_checkups_path(@user), class:'btn btn-success btn-lg' %>
+      検診結果を一部いれる（所要時間3分）
     <br>
-    <%= link_to '簡易版', new_user_easy_medical_checkups_path(@user), class:'btn btn-success btn-lg' %>
-    検診結果を一部いれる（所要時間3分）
+    <%= link_to '完全版', new_user_full_medical_checkups_path(@user), class:'btn btn-primary btn-lg disabled' %>
+    検診結果を全部いれる（所要時間5分）　簡易版入力後に使えるよ！
+
+  <% end %>
   </div>
