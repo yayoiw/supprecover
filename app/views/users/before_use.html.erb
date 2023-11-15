@@ -1,3 +1,4 @@
+<% if @first_visit %>
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
@@ -24,7 +25,25 @@
 <div class="m-5">
   さぷリカバーは健康診断の記録を入れることで、あなたにあったサプリをおすすめしてくれます。<br>
   <div class="m-3">
-  
+
+  <%= form_with model:@user, local: true do |f| %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.submit '先へすすむ',class: 'btn btn-primary' %>
+  <% end %>
+  </div>
+</div>
+<%= javascript_pack_tag 'custom_modal' %>
+
+<% else %>
+
+<%= render 'shared/error_message', object: @user %>
+<div class="m-5">
+  さぷリカバーは健康診断の記録を入れることで、あなたにあったサプリをおすすめしてくれます。<br>
+  <div class="m-3">
+
   <%= form_with model:@user, local: true do |f| %>
 
     <%= f.label :name %>
@@ -35,21 +54,4 @@
   </div>
 </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      let modal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
-      modal.show();
-
-      let modalDisable = document.getElementById('beforeUseCheckBox');
-      let modalButton = document.getElementById('modalButton');
-      
-      modalDisable.addEventListener('click', function(){
-      if(modalDisable.checked){
-        modalButton.disabled = false;
-      } else{
-        modalButton.disabled = true;
-      }
-      
-      })
-    });
-  </script>
+<% end %>
