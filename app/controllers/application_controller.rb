@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def blocking_access_before_use
     if session[:name].present?
-      redirect_to root_path, warning: t('.warning.name_exist') 
+      redirect_to root_path, warning: t('.warning.name_exist')
     end
   end
 

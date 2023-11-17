@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
       if (response.ok) {
         console.log('Cookie set successfully');
         // モーダルを閉じる
-        modal.hide();
+        modal.fade();
       } else {
         console.error('Error setting cookie');
       }
