@@ -50,7 +50,7 @@ RSpec.describe 'ユーザー登録機能', type: :system, js: true do
     end
   end
 
-  context 'ユーザー名登録' do
+  context 'ユーザー名登録前' do
     include_examples '強制モーダルが消えるまで'
     it 'root_pathへアクセスできず、before_use_pathへ飛ばされる' do
       expect(page).to have_text('名前を登録してください')
