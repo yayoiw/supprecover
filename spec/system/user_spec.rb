@@ -1,11 +1,25 @@
 require 'rails_helper'
 
-RSpec.describe 'ユーザー登録機能', type: :system do
-  context '初回アクセス時の強制利用規約モーダルウィンドウ', js: true do
+RSpec.describe 'ユーザー登録機能', type: :system, js: true do
+  shared_examples_for '強制モーダルが消えるまで' do
     before do
       visit root_path
-      page.driver.browser.manage.delete_cookie('agree')
       expect(current_path).to eq(before_use_path)
+      page.execute_script('document.querySelectorAll(".fade").forEach(function(element) { element.classList.remove("fade"); })')
+      expect(page).to have_selector('#staticBackdrop')
+      check('beforeUseCheckBox')
+      expect(page).to have_checked_field('beforeUseCheckBox')
+      expect(page).to have_button('modalButton', disabled: false)
+      click_button('modalButton')
+      expect(page).to have_no_css('.modal fade show')
+    end
+  end
+
+  context '初回アクセス時の強制利用規約モーダルウィンドウ' do
+    before do
+      visit root_path
+      expect(current_path).to eq(before_use_path)
+      page.execute_script('document.querySelectorAll(".fade").forEach(function(element) { element.classList.remove("fade"); })')
       expect(page).to have_selector('#staticBackdrop')
     end
 
@@ -30,30 +44,14 @@ RSpec.describe 'ユーザー登録機能', type: :system do
       check('beforeUseCheckBox')
       expect(page).to have_checked_field('beforeUseCheckBox')
       expect(page).to have_button('modalButton')
-      click_on('modalButton')
+      click_button('modalButton')
       expect(page).to have_no_selector('.modal fade')
       #期待する動作 強制モーダルが閉じる
     end
-
-    after do
-      page.driver.browser.manage.delete_cookie('agree')
-    end
   end
 
-  context 'ユーザー名登録前', js: true do
-    before do
-      visit root_path
-      expect(current_path).to eq(before_use_path)
-      expect(page).to have_selector('#staticBackdrop')
-      check('beforeUseCheckBox')
-      expect(page).to have_checked_field('beforeUseCheckBox')
-      expect(page).to have_button('modalButton', disabled: false)
-      Capybara.using_wait_time(7) do
-        find("#modalButton").click
-        expect(page).to have_no_css('.modal fade show')
-      end
-    end
-
+  context 'ユーザー名登録' do
+    include_examples '強制モーダルが消えるまで'
     it 'root_pathへアクセスできず、before_use_pathへ飛ばされる' do
       expect(page).to have_text('名前を登録してください')
       #期待する動作 名前を登録してくださいとでてbefore_use画面に遷移
@@ -83,24 +81,13 @@ RSpec.describe 'ユーザー登録機能', type: :system do
     end
   end
 
-  context 'ユーザー名登録', js: true do
-    before do
-      visit root_path
-      expect(current_path).to eq(before_use_path)
-      expect(page).to have_selector('#staticBackdrop')
-      check('beforeUseCheckBox')
-      expect(page).to have_checked_field('beforeUseCheckBox')
-      expect(page).to have_button('modalButton', disabled: false)
-      find("#modalButton").click
-      execute_script("bootstrap.Modal.getInstance(document.getElementById('staticBackdrop')).hide()")
-      expect(page).to have_no_selector('#staticBackdrop.modal.fade.show')
-    end
-
+  context 'ユーザー名登録' do
+    include_examples '強制モーダルが消えるまで'
     it 'ユーザー名ブランクで登録した場合' do
       expect(page).to have_button('先へすすむ')
       click_on('先へすすむ')
       expect(page).to have_text('名前を入力してください')
-      #期待する動作 名前を入力してくださいとでる、強制モーダルがでる
+      #期待する動作 名前を入力してくださいとでる
     end
 
     it 'ユーザー名ありで登録した場合' do
@@ -125,15 +112,9 @@ RSpec.describe 'ユーザー登録機能', type: :system do
     end
   end
 
-  context 'ユーザー名登録後', js: true do
+  context 'ユーザー名登録後' do
+    include_examples '強制モーダルが消えるまで'
     before do
-      visit root_path
-      expect(current_path).to eq(before_use_path)
-      expect(page).to have_selector('#staticBackdrop')
-      check('beforeUseCheckBox')
-      expect(page).to have_checked_field('beforeUseCheckBox')
-      expect(page).to have_button('modalButton')
-      click_on('modalButton')
       fill_in 'user_name', with: 'testA'
       click_on('先へすすむ')
       expect(current_path).to eq(root_path)
