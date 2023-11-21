@@ -1,5 +1,5 @@
 <%= render 'shared/error_message', object: @full_medical_checkup %>
-  <%= form_with model:[@user, @full_medical_checkup], local: true, class: "checkup_form" do |f| %>
+  <%= form_with model:[@user, @full_medical_checkup], url:user_full_medical_checkups_path(@user), method: :post, local: true, class: "checkup_form" do |f| %>
     <div class="form-group mb-4">
     <%= f.label :fasting_blood_sugar, FullMedicalCheckup.human_attribute_name(:fasting_blood_sugar) %>
     <%= f.text_field :fasting_blood_sugar, class: "form-control" %>
