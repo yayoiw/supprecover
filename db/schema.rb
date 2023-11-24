@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_09_095720) do
+ActiveRecord::Schema.define(version: 2023_11_24_135339) do
 
   create_table "easy_medical_checkups", force: :cascade do |t|
     t.integer "user_id"
@@ -64,6 +64,17 @@ ActiveRecord::Schema.define(version: 2023_09_09_095720) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "taggings", force: :cascade do |t|
+    t.integer "tag_id", null: false
+    t.integer "easy_medical_checkup_id", null: false
+    t.integer "full_medical_checkup_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["easy_medical_checkup_id"], name: "index_taggings_on_easy_medical_checkup_id"
+    t.index ["full_medical_checkup_id"], name: "index_taggings_on_full_medical_checkup_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name", null: false
     t.integer "up_or_down", null: false
@@ -75,9 +86,12 @@ ActiveRecord::Schema.define(version: 2023_09_09_095720) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_users_on_name", unique: true
+    t.index ["name"], name: "index_users_on_name"
   end
 
   add_foreign_key "supplement_tags", "supplements"
   add_foreign_key "supplement_tags", "tags"
+  add_foreign_key "taggings", "easy_medical_checkups"
+  add_foreign_key "taggings", "full_medical_checkups"
+  add_foreign_key "taggings", "tags"
 end
