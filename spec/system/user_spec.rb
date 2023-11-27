@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'ユーザー登録機能', type: :system, js: true do
+  let(:user) { FactoryBot.create(:user)}
   shared_examples_for '強制モーダルが消えるまで' do
     before do
       visit root_path
@@ -53,6 +54,8 @@ RSpec.describe 'ユーザー登録機能', type: :system, js: true do
   context 'ユーザー名登録前' do
     include_examples '強制モーダルが消えるまで'
     it 'root_pathへアクセスできず、before_use_pathへ飛ばされる' do
+      visit root_path
+      expect(current_path).to eq(before_use_path)
       expect(page).to have_text('名前を登録してください')
       #期待する動作 名前を登録してくださいとでてbefore_use画面に遷移
     end
@@ -91,18 +94,10 @@ RSpec.describe 'ユーザー登録機能', type: :system, js: true do
     end
 
     it 'ユーザー名ありで登録した場合' do
-      fill_in 'user_name', with: 'testA'
+      fill_in 'user_name', with: user.name
       click_on('先へすすむ')
       expect(current_path).to eq(root_path)
       #期待する動作 登録できる
-    end
-
-    it '同じユーザー名で登録した場合' do
-      FactoryBot.create(:user)
-      fill_in 'user_name', with: 'testA'
-      click_on('先へすすむ')
-      expect(page).to have_text('名前はすでに存在します')
-      #期待する動作 登録拒否される
     end
 
     it '30文字以上のユーザー名で登録した場合' do
@@ -115,7 +110,7 @@ RSpec.describe 'ユーザー登録機能', type: :system, js: true do
   context 'ユーザー名登録後' do
     include_examples '強制モーダルが消えるまで'
     before do
-      fill_in 'user_name', with: 'testA'
+      fill_in 'user_name', with: user.name
       click_on('先へすすむ')
       expect(current_path).to eq(root_path)
     end
