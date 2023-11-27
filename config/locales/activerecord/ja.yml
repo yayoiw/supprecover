@@ -44,4 +44,12 @@ ja:
         no_name: '名前を登録してください'
     before_use:
       warning:
-        name_exist: '既に登録済みの名前です'
+        no_name: '名前を登録してください'
+  easy_medical_checkups:
+    new:
+      warning:
+        no_name: '名前を登録してください'
+  full_medical_checkups:
+    new:
+      warning:
+        no_name: '名前を登録してください'
