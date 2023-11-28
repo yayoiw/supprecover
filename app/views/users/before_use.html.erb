@@ -1,57 +1,57 @@
 <% unless @agree %>
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">利用開始前に</h5>
-      </div>
-      <div class="modal-body">
-        <%= render 'shared/terms_of_use' %>
-      </div>
-      <div class="form-check m-3">
-        <input class="form-check-input" type="checkbox" value="" id="beforeUseCheckBox">
-          <label class="form-check-label " for="beforeUseCheckBox">
-            注意事項、利用規約に了承の上で利用を始める
-          </label>
-      </div>
-      <div class="modal-footer">
-        <%= link_to '利用をやめる', 'https://www.yahoo.co.jp/',class: "btn btn-secondary", target: "_self" %>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="modalButton" disabled>利用を始める</button>
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">利用開始前に</h5>
         </div>
+        <div class="modal-body">
+          <%= render 'shared/terms_of_use' %>
+        </div>
+        <div class="form-check m-3">
+          <input class="form-check-input" type="checkbox" value="" id="beforeUseCheckBox">
+            <label class="form-check-label " for="beforeUseCheckBox">
+              注意事項、利用規約に了承の上で利用を始める
+            </label>
+        </div>
+        <div class="modal-footer">
+          <%= link_to '利用をやめる', 'https://www.yahoo.co.jp/',class: "btn btn-secondary", target: "_self" %>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="modalButton" disabled>利用を始める</button>
+          </div>
+      </div>
     </div>
   </div>
-</div>
-<%= render 'shared/error_message', object: @user %>
-<div class="m-5">
-  さぷリカバーは健康診断の記録を入れることで、あなたにあったサプリをおすすめしてくれます。<br>
-  <div class="m-3">
+  <%= render 'shared/error_message', object: @user %>
+  <div class="m-5">
+    さぷリカバーは健康診断の記録を入れることで、あなたにあったサプリをおすすめしてくれます。<br>
+    <div class="m-3">
 
-  <%= form_with model:@user, local: true do |f| %>
+    <%= form_with model:@user, local: true do |f| %>
 
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
 
-    <%= f.submit '先へすすむ',class: 'btn btn-primary' %>
-  <% end %>
+      <%= f.submit '先へすすむ',class: 'btn btn-primary' %>
+    <% end %>
+    </div>
   </div>
-</div>
-<%= javascript_pack_tag 'custom_modal' %>
+  <%= javascript_pack_tag 'custom_modal' %>
 
 <% else %>
 
-<%= render 'shared/error_message', object: @user %>
-<div class="m-5">
-  さぷリカバーは健康診断の記録を入れることで、あなたにあったサプリをおすすめしてくれます。<br>
-  <div class="m-3">
+  <%= render 'shared/error_message', object: @user %>
+  <div class="m-5">
+    さぷリカバーは健康診断の記録を入れることで、あなたにあったサプリをおすすめしてくれます。<br>
+    <div class="m-3">
 
-  <%= form_with model:@user, local: true do |f| %>
+    <%= form_with model:@user, local: true do |f| %>
 
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
 
-    <%= f.submit '先へすすむ',class: 'btn btn-primary' %>
-  <% end %>
+      <%= f.submit '先へすすむ',class: 'btn btn-primary' %>
+    <% end %>
+    </div>
   </div>
-</div>
 
 <% end %>

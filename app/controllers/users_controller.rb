@@ -22,7 +22,9 @@ class UsersController < ApplicationController
       session[:name] = @user.name
       redirect_to root_path
     else
-      redirect_to before_use
+      cookies[:agree] = 'true'
+      @agree = 'true'
+      render :before_use
     end
   end
 
