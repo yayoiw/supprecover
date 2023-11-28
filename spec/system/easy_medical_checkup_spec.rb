@@ -250,6 +250,7 @@ RSpec.describe '簡易版診断機能', type: :system do
       fill_in 'easy_medical_checkup_gamma_gtp', with: 50
       click_button '送信'
       expect(current_path).to eq(user_easy_medical_checkups_path(user))
+      expect(page).to have_text('なお、サプリメントは栄養補助食品です。')
       #期待する動作 結果画面に遷移
     end
 
@@ -275,7 +276,7 @@ RSpec.describe '簡易版診断機能', type: :system do
       expect(current_path).to eq(user_easy_medical_checkups_path(user))
     end
 
-    it 'before_useにアクセスした場合' do
+    it 'before_useにアクセスできない' do
       visit before_use_path
       expect(current_path).to eq(root_path)
       expect(page).to have_text('既に登録済みの名前です')
@@ -288,13 +289,13 @@ RSpec.describe '簡易版診断機能', type: :system do
       #期待する動作 aboutへ遷移
     end
 
-    it 'privacy_policy_pathへアクセス' do
+    it 'privacy_policy_pathへアクセスできる' do
       visit privacy_policy_path
       expect(current_path).to eq(privacy_policy_path)
       #期待する動作 プライバシーポリシーへ遷移
     end
 
-    it 'terms_of_use_pathへアクセス' do
+    it 'terms_of_use_pathへアクセスできる' do
       visit terms_of_use_path
       expect(current_path).to eq(terms_of_use_path)
       #期待する動作 利用規約へ遷移
