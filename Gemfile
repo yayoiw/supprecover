@@ -43,8 +43,8 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '~> 1.4'
+  # Use pg as the database for Active Record
+  gem 'pg', '~> 1.4'
 end
 
 group :test do
@@ -60,5 +60,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap', '~> 5.0.2'
 gem "dockerfile-rails", ">= 1.2", :group => :development
 
-gem "pg", "~> 1.4"
 gem 'rails-i18n', '~> 6.0'

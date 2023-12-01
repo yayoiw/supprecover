@@ -12,8 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2023_10_11_132131) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "easy_medical_checkups", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.integer "height", null: false
     t.integer "weight", null: false
     t.integer "blood_pressure_up", null: false
@@ -31,7 +34,7 @@ ActiveRecord::Schema.define(version: 2023_10_11_132131) do
   end
 
   create_table "full_medical_checkups", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.integer "fasting_blood_sugar", null: false
     t.decimal "hba1c", null: false
     t.integer "urine_sugar", null: false
@@ -49,8 +52,8 @@ ActiveRecord::Schema.define(version: 2023_10_11_132131) do
   end
 
   create_table "supplement_tags", force: :cascade do |t|
-    t.integer "supplement_id", null: false
-    t.integer "tag_id", null: false
+    t.bigint "supplement_id", null: false
+    t.bigint "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["supplement_id"], name: "index_supplement_tags_on_supplement_id"
@@ -65,9 +68,9 @@ ActiveRecord::Schema.define(version: 2023_10_11_132131) do
   end
 
   create_table "taggings", force: :cascade do |t|
-    t.integer "tag_id", null: false
-    t.integer "easy_medical_checkup_id", null: false
-    t.integer "full_medical_checkup_id"
+    t.bigint "tag_id", null: false
+    t.bigint "easy_medical_checkup_id", null: false
+    t.bigint "full_medical_checkup_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["easy_medical_checkup_id"], name: "index_taggings_on_easy_medical_checkup_id"
