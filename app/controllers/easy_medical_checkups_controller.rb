@@ -21,7 +21,7 @@ class EasyMedicalCheckupsController < ApplicationController
     supplement_names = @recommended_supplements_easy.map(&:name).join('、')
     @tweet_template = "#{@easy_medical_checkup.user.name}さんへのおすすめサプリは、#{supplement_names}です！診断結果をチェックしてみてね！"
     if @tweet_template.length > 280
-      truncated_text = tweet_template[0..276] + "..."
+      truncated_text = tweet_template[0..276] + '...'
       @result_for_tweet = truncated_text
     else
       @result_for_tweet = @tweet_template
@@ -32,7 +32,7 @@ class EasyMedicalCheckupsController < ApplicationController
 
   def easy_medical_checkup_params
     params.require(:easy_medical_checkup).permit(:height, :weight, :blood_pressure_up, :blood_pressure_down,
-                                                  :total_cholesterol, :hdl_cholesterol, :ldl_cholesterol, :neutral_fat,
-                                                  :ast, :alt, :gamma_gtp)
+                                                 :total_cholesterol, :hdl_cholesterol, :ldl_cholesterol, :neutral_fat,
+                                                 :ast, :alt, :gamma_gtp)
   end
 end

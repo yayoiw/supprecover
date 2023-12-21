@@ -45,6 +45,7 @@ ja:
     before_use:
       warning:
         no_name: '名前を登録してください'
+        name_exist: '既に登録済みの名前です'
   easy_medical_checkups:
     new:
       warning:

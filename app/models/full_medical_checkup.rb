@@ -1,7 +1,7 @@
 class FullMedicalCheckup < ApplicationRecord
   validates :fasting_blood_sugar, numericality: { only_integer: true, allow_blank: true }, presence: true
   validates :hba1c, presence: true, precision: true
-  enum urine_sugar: {usnegative: 0, usslight: 1, uspositive: 2, usdouble_positive: 3, ustriple_positive: 4}
+  enum urine_sugar: { usnegative: 0, usslight: 1, uspositive: 2, usdouble_positive: 3, ustriple_positive: 4 }
   validates :urine_sugar, presence: true
   validates :uric_acid, presence: true, precision: true
   validates :creatinine, presence: true, precision: true
@@ -10,7 +10,7 @@ class FullMedicalCheckup < ApplicationRecord
   validates :hemoglobin, numericality: { only_integer: true, allow_blank: true }, presence: true
   validates :rbc, numericality: { only_integer: true, allow_blank: true }, presence: true
   validates :wbc, numericality: { only_integer: true, allow_blank: true }, presence: true
-  enum urine_protein: {upnegative: 0, upslight: 1, uppositive: 2, updouble_positive: 3, uptriple_positive: 4}
+  enum urine_protein: { upnegative: 0, upslight: 1, uppositive: 2, updouble_positive: 3, uptriple_positive: 4 }
   validates :urine_protein, presence: true
   belongs_to :user
   has_many :taggings
@@ -18,20 +18,21 @@ class FullMedicalCheckup < ApplicationRecord
   before_validation :convert_enum_attributes_to_integer
 
   def recommended_supplements
-  bad_ranking = {}
+    bad_ranking = {}
 
-  columns = [:fasting_blood_sugar, :hba1c, :urine_sugar, :uric_acid, :creatinine, :egfr, :hematocrit, :hemoglobin, :rbc, :wbc, :urine_protein]
+    columns = %i[fasting_blood_sugar hba1c urine_sugar uric_acid creatinine egfr hematocrit hemoglobin
+                 rbc wbc urine_protein]
 
-  columns.each do |column|
-    value = self.send(column).to_f
-    ref_values = Rails.configuration.x.reference_values[column]
+    columns.each do |column|
+      value = send(column).to_f
+      ref_values = Rails.configuration.x.reference_values[column]
 
-    if value > ref_values[:max]
-      bad_ranking[column] = (value.to_f / ref_values[:max]) * 100
-    elsif value < ref_values[:min]
-      bad_ranking[column] = (value.to_f / ref_values[:min]) * 100
+      if value > ref_values[:max]
+        bad_ranking[column] = (value.to_f / ref_values[:max]) * 100
+      elsif value < ref_values[:min]
+        bad_ranking[column] = (value.to_f / ref_values[:min]) * 100
+      end
     end
-  end
 
     # if self.fasting_blood_sugar > Rails.configuration.x.reference_values[:fasting_blood_sugar][:max]
     #   bad_ranking[:fasting_blood_sugar] = (self.fasting_blood_sugar.to_f / Rails.configuration.x.reference_values[:fasting_blood_sugar][:max]) * 100
@@ -99,23 +100,23 @@ class FullMedicalCheckup < ApplicationRecord
     #   bad_ranking[:urine_protein] = (self.urine_protein.to_f / Rails.configuration.x.reference_values[:urine_protein][:min]) * 100
     # end
 
+    sorted_bad_rankings = bad_ranking.sort_by { |_key, value| -(value - 100).abs }.to_h
 
-  sorted_bad_rankings = bad_ranking.sort_by { |_key, value| -(value - 100).abs }.to_h
+    recommendations = []
 
-  recommendations = []
+    conditions = sorted_bad_rankings.map do |key, value|
+      up_or_down = value > 100 ? 'uptodown' : 'downtoup'
+      [key, up_or_down]
+    end
 
-  conditions = sorted_bad_rankings.map do |key, value|
-    up_or_down = value > 100 ? 'uptodown' : 'downtoup'
-    [key, up_or_down]
-  end
+    tags_with_supplements = Tag.includes(:supplements).where(name: conditions.map(&:first),
+                                                             up_or_down: conditions.map(&:second))
 
-  tags_with_supplements = Tag.includes(:supplements).where(name: conditions.map(&:first), up_or_down: conditions.map(&:second))
+    recommendations = tags_with_supplements.flat_map(&:supplements)
 
-  recommendations = tags_with_supplements.flat_map(&:supplements)
-
-  recommendations.flatten!
-  recommendations.uniq!
-  Supplement.where(id: recommendations.map(&:id))
+    recommendations.flatten!
+    recommendations.uniq!
+    Supplement.where(id: recommendations.map(&:id))
   end
 
   def total_supplements(easy_supplements, full_supplements)

@@ -1,10 +1,10 @@
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
-require "active_model/railtie"
-require "active_job/railtie"
-require "active_record/railtie"
-require "active_storage/engine"
+require 'rails/all'
+require 'active_model/railtie'
+require 'active_job/railtie'
+require 'active_record/railtie'
+require 'active_storage/engine'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -38,7 +38,7 @@ module Supprecover
       urine_sugar: { min: 0, middle: 1, max: 2 },
       uric_acid: { min: 2.0, middle: 4.5, max: 7.0 },
       creatinine: { min: 0.5, middle: 0.6, max: 0.7 },
-      egfr: { min: 60, middle: 75, max:90  },
+      egfr: { min: 60, middle: 75, max: 90 },
       hematocrit: { min: 36, middle: 40, max: 44 },
       hemoglobin: { min: 13, middle: 14, max: 16 },
       rbc: { min: 360, middle: 425, max: 490 },

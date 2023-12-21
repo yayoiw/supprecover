@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'ユーザー登録機能', type: :system, js: true do
-  let(:user) { FactoryBot.create(:user)}
+  let(:user) { FactoryBot.create(:user) }
   shared_examples_for '強制モーダルが消えるまで' do
     before do
       visit root_path
@@ -27,18 +27,18 @@ RSpec.describe 'ユーザー登録機能', type: :system, js: true do
     it 'モーダル枠外をクリックして閉じることができない' do
       execute_script("document.querySelector('.navbar-brand').click();")
       expect(page).to have_selector('#staticBackdrop')
-      #期待する動作 閉じることができない
+      # 期待する動作 閉じることができない
     end
 
     it 'モーダル未チェックのままだと利用開始ボタンがグレーアウトして押せない' do
       expect(page).to have_unchecked_field('beforeUseCheckBox')
       expect(page).to have_button('modalButton', disabled: true)
-      #期待する動作 押下不可
+      # 期待する動作 押下不可
     end
 
     it 'モーダル内利用をやめるボタンを押すとyahooへ飛ばされる' do
       expect(page).to have_link(href: 'https://www.yahoo.co.jp/')
-      #期待する動作 yahoo.co.jpへ飛ばされる
+      # 期待する動作 yahoo.co.jpへ飛ばされる
     end
 
     it 'モーダル内チェックボックスにチェックをいれて利用を始めるを押下するとモーダルが消える' do
@@ -47,7 +47,7 @@ RSpec.describe 'ユーザー登録機能', type: :system, js: true do
       expect(page).to have_button('modalButton')
       click_button('modalButton')
       expect(page).to have_no_selector('.modal fade')
-      #期待する動作 強制モーダルが閉じる
+      # 期待する動作 強制モーダルが閉じる
     end
   end
 
@@ -57,30 +57,30 @@ RSpec.describe 'ユーザー登録機能', type: :system, js: true do
       visit root_path
       expect(current_path).to eq(before_use_path)
       expect(page).to have_text('名前を登録してください')
-      #期待する動作 名前を登録してくださいとでてbefore_use画面に遷移
+      # 期待する動作 名前を登録してくださいとでてbefore_use画面に遷移
     end
 
     it 'about_pathへアクセスできる' do
       visit about_path
       expect(current_path).to eq(about_path)
-      #期待する動作 aboutへ遷移
+      # 期待する動作 aboutへ遷移
     end
 
     it 'privacy_policy_pathへアクセスできる' do
       visit privacy_policy_path
       expect(current_path).to eq(privacy_policy_path)
-      #期待する動作 プライバシーポリシーへ遷移
+      # 期待する動作 プライバシーポリシーへ遷移
     end
 
     it 'terms_of_use_pathへアクセスできる' do
       visit terms_of_use_path
       expect(current_path).to eq(terms_of_use_path)
-      #期待する動作 利用規約へ遷移
+      # 期待する動作 利用規約へ遷移
     end
 
     it 'コンタクトへのリンクがある' do
-      expect(page).to have_link(href: 'https://twitter.com/841wtb',target: '_blank')
-      #期待する動作 コンタクト（twitter）新規タブで遷移
+      expect(page).to have_link(href: 'https://twitter.com/841wtb', target: '_blank')
+      # 期待する動作 コンタクト（twitter）新規タブで遷移
     end
   end
 
@@ -90,14 +90,14 @@ RSpec.describe 'ユーザー登録機能', type: :system, js: true do
       expect(page).to have_button('先へすすむ')
       click_on('先へすすむ')
       expect(page).to have_text('名前を入力してください')
-      #期待する動作 名前を入力してくださいとでる
+      # 期待する動作 名前を入力してくださいとでる
     end
 
     it 'ユーザー名ありで登録した場合' do
       fill_in 'user_name', with: user.name
       click_on('先へすすむ')
       expect(current_path).to eq(root_path)
-      #期待する動作 登録できる
+      # 期待する動作 登録できる
     end
 
     it '30文字以上のユーザー名で登録した場合' do
@@ -119,30 +119,30 @@ RSpec.describe 'ユーザー登録機能', type: :system, js: true do
       visit before_use_path
       expect(current_path).to eq(root_path)
       expect(page).to have_text('既に登録済みの名前です')
-      #期待する動作 root_pathへ飛ばされる
+      # 期待する動作 root_pathへ飛ばされる
     end
 
     it 'about_pathへアクセスできる' do
       visit about_path
       expect(current_path).to eq(about_path)
-      #期待する動作 aboutへ遷移
+      # 期待する動作 aboutへ遷移
     end
 
     it 'privacy_policy_pathへアクセスできる' do
       visit privacy_policy_path
       expect(current_path).to eq(privacy_policy_path)
-      #期待する動作 プライバシーポリシーへ遷移
+      # 期待する動作 プライバシーポリシーへ遷移
     end
 
     it 'terms_of_use_pathへアクセスできる' do
       visit terms_of_use_path
       expect(current_path).to eq(terms_of_use_path)
-      #期待する動作 利用規約へ遷移
+      # 期待する動作 利用規約へ遷移
     end
 
     it 'コンタクトへのリンクがある' do
-      expect(page).to have_link(href: 'https://twitter.com/841wtb',target: '_blank')
-      #期待する動作 コンタクト（twitter）新規タブで遷移
+      expect(page).to have_link(href: 'https://twitter.com/841wtb', target: '_blank')
+      # 期待する動作 コンタクト（twitter）新規タブで遷移
     end
   end
 end

@@ -1,6 +1,8 @@
 class EasyMedicalCheckup < ApplicationRecord
-  validates :height, numericality: { greater_than_or_equal_to: 140, less_than_or_equal_to: 200, allow_blank: true }, presence: true
-  validates :weight, numericality: { greater_than_or_equal_to: 40, less_than_or_equal_to: 150, allow_blank: true }, presence: true
+  validates :height, numericality: { greater_than_or_equal_to: 140, less_than_or_equal_to: 200, allow_blank: true },
+                     presence: true
+  validates :weight, numericality: { greater_than_or_equal_to: 40, less_than_or_equal_to: 150, allow_blank: true },
+                     presence: true
   validates :blood_pressure_up, numericality: { only_integer: true, allow_blank: true }, presence: true
   validates :blood_pressure_down, numericality: { only_integer: true, allow_blank: true }, presence: true
   validates :total_cholesterol, numericality: { only_integer: true, allow_blank: true }, presence: true
@@ -15,32 +17,32 @@ class EasyMedicalCheckup < ApplicationRecord
   has_many :tags, through: :taggings
 
   def bmi
-    (weight / ((height / 100.0) ** 2)).round(1) #BMI ＝ 体重kg ÷ (身長m)2
+    (weight / ((height / 100.0)**2)).round(1) # BMI ＝ 体重kg ÷ (身長m)2
   end
 
   def body_type
     case bmi
     when 0...18.5
-      "やせ型"
+      'やせ型'
     when 18.5...25
-      "標準"
+      '標準'
     when 25...30
-      "肥満(軽)"
+      '肥満(軽)'
     else
-      "肥満(重)"
+      '肥満(重)'
     end
   end
-
 
   def recommended_supplements
     bad_ranking = {}
 
-    columns = [:blood_pressure_up, :blood_pressure_down, :total_cholesterol, :hdl_cholesterol, :ldl_cholesterol, :neutral_fat, :ast, :alt, :gamma_gtp]
+    columns = %i[blood_pressure_up blood_pressure_down total_cholesterol hdl_cholesterol ldl_cholesterol
+                 neutral_fat ast alt gamma_gtp]
 
     columns.each do |column|
-      value = self.send(column).to_f
+      value = send(column).to_f
       ref_values = Rails.configuration.x.reference_values[column]
-  
+
       if value > ref_values[:max]
         bad_ranking[column] = (value.to_f / ref_values[:max]) * 100
       elsif value < ref_values[:min]
@@ -110,19 +112,18 @@ class EasyMedicalCheckup < ApplicationRecord
       [key, up_or_down]
     end
 
-    tags_with_supplements = Tag.includes(:supplements).where(name: conditions.map(&:first), up_or_down: conditions.map(&:second))
+    tags_with_supplements = Tag.includes(:supplements).where(name: conditions.map(&:first),
+                                                             up_or_down: conditions.map(&:second))
 
     recommendations = tags_with_supplements.flat_map(&:supplements)
 
-    if body_type == "やせ型"
-      weight_tag = Tag.find_by(name: "weight", up_or_down: 1)
-    elsif body_type == "肥満(軽)" || body_type == "肥満(重)"
-      weight_tag = Tag.find_by(name: "weight", up_or_down: 0)
+    if body_type == 'やせ型'
+      weight_tag = Tag.find_by(name: 'weight', up_or_down: 1)
+    elsif body_type == '肥満(軽)' || body_type == '肥満(重)'
+      weight_tag = Tag.find_by(name: 'weight', up_or_down: 0)
     end
 
-    if weight_tag
-      recommendations += weight_tag.supplements
-    end
+    recommendations += weight_tag.supplements if weight_tag
 
     recommendations.flatten!
     recommendations.uniq!

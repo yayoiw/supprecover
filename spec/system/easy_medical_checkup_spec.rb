@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe '簡易版診断機能', type: :system do
-  let(:user) { FactoryBot.create(:user)}
+  let(:user) { FactoryBot.create(:user) }
   shared_examples_for 'ユーザー名登録まで' do
     before do
       visit root_path
@@ -21,13 +21,13 @@ RSpec.describe '簡易版診断機能', type: :system do
     include_examples 'ユーザー名登録まで'
     it '完全版診断が使えない' do
       expect(page).to have_css('#before_full_checkup.disabled')
-      #期待する動作 完全版診断がグレーアウトしている
+      # 期待する動作 完全版診断がグレーアウトしている
     end
 
     it '簡易版診断にアクセスできる' do
       visit new_user_easy_medical_checkups_path(user)
       expect(current_path).to eq(new_user_easy_medical_checkups_path(user))
-      #期待する動作 簡易版診断にアクセスできる
+      # 期待する動作 簡易版診断にアクセスできる
     end
   end
 
@@ -53,7 +53,7 @@ RSpec.describe '簡易版診断機能', type: :system do
       click_button '送信'
       expect(current_path).to eq(user_easy_medical_checkups_path(user))
       expect(page).to have_text('身長を入力してください')
-      #期待する動作 弾かれる
+      # 期待する動作 弾かれる
     end
 
     it '体重のみ未入力' do
@@ -71,7 +71,7 @@ RSpec.describe '簡易版診断機能', type: :system do
       click_button '送信'
       expect(current_path).to eq(user_easy_medical_checkups_path(user))
       expect(page).to have_text('体重を入力してください')
-      #期待する動作 弾かれる
+      # 期待する動作 弾かれる
     end
 
     it '血圧（上）のみ未入力' do
@@ -89,7 +89,7 @@ RSpec.describe '簡易版診断機能', type: :system do
       click_button '送信'
       expect(current_path).to eq(user_easy_medical_checkups_path(user))
       expect(page).to have_text('血圧(上)を入力してください')
-      #期待する動作 弾かれる
+      # 期待する動作 弾かれる
     end
 
     it '血圧（下）のみ未入力' do
@@ -107,7 +107,7 @@ RSpec.describe '簡易版診断機能', type: :system do
       click_button '送信'
       expect(current_path).to eq(user_easy_medical_checkups_path(user))
       expect(page).to have_text('血圧(下)を入力してください')
-      #期待する動作 弾かれる
+      # 期待する動作 弾かれる
     end
 
     it '総コレステロールのみ未入力' do
@@ -125,7 +125,7 @@ RSpec.describe '簡易版診断機能', type: :system do
       click_button '送信'
       expect(current_path).to eq(user_easy_medical_checkups_path(user))
       expect(page).to have_text('総コレステロールを入力してください')
-      #期待する動作 弾かれる
+      # 期待する動作 弾かれる
     end
 
     it 'HDLコレステロールのみ未入力' do
@@ -143,7 +143,7 @@ RSpec.describe '簡易版診断機能', type: :system do
       click_button '送信'
       expect(current_path).to eq(user_easy_medical_checkups_path(user))
       expect(page).to have_text('HDLコレステロールを入力してください')
-      #期待する動作 弾かれる
+      # 期待する動作 弾かれる
     end
 
     it 'LDLコレステロールのみ未入力' do
@@ -161,7 +161,7 @@ RSpec.describe '簡易版診断機能', type: :system do
       click_button '送信'
       expect(current_path).to eq(user_easy_medical_checkups_path(user))
       expect(page).to have_text('LDLコレステロールを入力してください')
-      #期待する動作 弾かれる
+      # 期待する動作 弾かれる
     end
 
     it '中性脂肪のみ未入力' do
@@ -179,7 +179,7 @@ RSpec.describe '簡易版診断機能', type: :system do
       click_button '送信'
       expect(current_path).to eq(user_easy_medical_checkups_path(user))
       expect(page).to have_text('中性脂肪を入力してください')
-      #期待する動作 弾かれる
+      # 期待する動作 弾かれる
     end
 
     it 'ASTのみ未入力' do
@@ -197,7 +197,7 @@ RSpec.describe '簡易版診断機能', type: :system do
       click_button '送信'
       expect(current_path).to eq(user_easy_medical_checkups_path(user))
       expect(page).to have_text('ASTを入力してください')
-      #期待する動作 弾かれる
+      # 期待する動作 弾かれる
     end
 
     it 'ALTのみ未入力' do
@@ -215,7 +215,7 @@ RSpec.describe '簡易版診断機能', type: :system do
       click_button '送信'
       expect(current_path).to eq(user_easy_medical_checkups_path(user))
       expect(page).to have_text('ALTを入力してください')
-      #期待する動作 弾かれる
+      # 期待する動作 弾かれる
     end
 
     it 'γ-GTPのみ未入力' do
@@ -233,7 +233,7 @@ RSpec.describe '簡易版診断機能', type: :system do
       click_button '送信'
       expect(current_path).to eq(user_easy_medical_checkups_path(user))
       expect(page).to have_text('γ-GTPを入力してください')
-      #期待する動作 弾かれる
+      # 期待する動作 弾かれる
     end
 
     it '全てに有効な値を入力' do
@@ -251,9 +251,8 @@ RSpec.describe '簡易版診断機能', type: :system do
       click_button '送信'
       expect(current_path).to eq(user_easy_medical_checkups_path(user))
       expect(page).to have_text('なお、サプリメントは栄養補助食品です。')
-      #期待する動作 結果画面に遷移
+      # 期待する動作 結果画面に遷移
     end
-
   end
 
   context '診断結果表示後' do
@@ -280,35 +279,34 @@ RSpec.describe '簡易版診断機能', type: :system do
       visit before_use_path
       expect(current_path).to eq(root_path)
       expect(page).to have_text('既に登録済みの名前です')
-      #期待する動作 root_pathへ飛ばされる
+      # 期待する動作 root_pathへ飛ばされる
     end
 
     it 'about_pathへアクセスできる' do
       visit about_path
       expect(current_path).to eq(about_path)
-      #期待する動作 aboutへ遷移
+      # 期待する動作 aboutへ遷移
     end
 
     it 'privacy_policy_pathへアクセスできる' do
       visit privacy_policy_path
       expect(current_path).to eq(privacy_policy_path)
-      #期待する動作 プライバシーポリシーへ遷移
+      # 期待する動作 プライバシーポリシーへ遷移
     end
 
     it 'terms_of_use_pathへアクセスできる' do
       visit terms_of_use_path
       expect(current_path).to eq(terms_of_use_path)
-      #期待する動作 利用規約へ遷移
+      # 期待する動作 利用規約へ遷移
     end
 
     it 'コンタクトへのリンクがある' do
-      expect(page).to have_link(href: 'https://twitter.com/841wtb',target: '_blank')
-      #期待する動作 コンタクト（twitter）新規タブで遷移
+      expect(page).to have_link(href: 'https://twitter.com/841wtb', target: '_blank')
+      # 期待する動作 コンタクト（twitter）新規タブで遷移
     end
 
     it 'すべて閾値内(異常値なし)で入力された場合' do
       expect(page).to have_text('あなたは現在健康であるため、健康診断数値改善のためのサプリは不要になります。')
     end
   end
-
 end

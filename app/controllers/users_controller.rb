@@ -3,14 +3,13 @@ class UsersController < ApplicationController
   before_action :blocking_access_before_use, only: :before_use
   before_action :check_agreement, only: :before_use
 
-
   def index
     @user = User.find_by(name: session[:name])
   end
 
-  def about;end
+  def about; end
 
-  def contact;end
+  def contact; end
 
   def before_use
     @user = User.new
@@ -28,9 +27,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def terms_of_use;end
+  def terms_of_use; end
 
-  def privacy_policy;end
+  def privacy_policy; end
 
   def set_agreement
     cookies[:agree] = 'true'
@@ -42,7 +41,6 @@ class UsersController < ApplicationController
   def check_agreement
     @agree = cookies[:agree] == 'true'
   end
-
 
   def user_params
     params.require(:user).permit(:name)
