@@ -1,7 +1,6 @@
 # README
 
 
-
 ## さぷリカバー
 
 ■URL
@@ -9,13 +8,13 @@
 
 ■主な使用技術
 バックエンド
-Ruby(3.0.2) Ruby on Rails(6.1.2)
+Ruby(3.0.2) Ruby on Rails(6.1.2) Rspec
 
 フロントエンド
 BootStrap,JavaScript
 
 インフラ
-PostgreSQL
+PostgreSQL Heroku
 
 ■ サービス概要
 
@@ -28,7 +27,6 @@ PostgreSQL
 ■メインのターゲットユーザー
 
 　健康診断結果がB以下でてっとり早く改善したいと思っている方
-
 
 
 ■ユーザーが抱える課題
@@ -44,8 +42,7 @@ PostgreSQL
 ■解決方法
 
 健康診断結果を入力するだけでおすすめサプリが一覧で提案される
-何を買えばよいかがひとめでわかる
-
+何のサプリを買えばよいかがひとめでわかる
 
 
 ■実装機能
@@ -63,6 +60,8 @@ PostgreSQL
 
 
 　■画面遷移図
+[Figma](https://www.figma.com/file/067vzyD29cW4faCASK19Vz/supprecover?type=design&node-id=0%3A1&mode=design&t=9nGSTNOLp9hGtGMW-1)
 
 　■ER図
 
+[![Image from Gyazo](https://i.gyazo.com/76972f9fa7bb140483315660130043f0.png)](https://gyazo.com/76972f9fa7bb140483315660130043f0)
