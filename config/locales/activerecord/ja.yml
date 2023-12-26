@@ -1,0 +1,56 @@
+ja:
+  errors:
+    messages:
+      not_a_number: "は半角数字で入力してください"
+  activerecord:
+    models:
+      user: 'ユーザー'
+      supplement: 'サプリメント'
+      easy_medical_checkup: '簡易版'
+      full_medical_checkup: '完全版'
+    attributes:
+      user:
+        name: '名前'
+      supplement:
+        name: '種類'
+        description: '説明'
+      easy_medical_checkup:
+        height: '身長'
+        weight: '体重'
+        blood_pressure_up: '血圧(上)'
+        blood_pressure_down: '血圧(下)'
+        total_cholesterol: '総コレステロール'
+        hdl_cholesterol: 'HDLコレステロール'
+        ldl_cholesterol: 'LDLコレステロール'
+        neutral_fat: '中性脂肪'
+        ast: 'AST'
+        alt: 'ALT'
+        gamma_gtp: 'γ-GTP'
+      full_medical_checkup:
+        fasting_blood_sugar: '空腹時血糖'
+        hba1c: 'HbA1c'
+        urine_sugar: '尿糖'
+        uric_acid: '尿酸値'
+        creatinine: 'クレアチニン'
+        egfr: 'eGFR'
+        hematocrit: 'ヘマトクリット'
+        hemoglobin: 'ヘモグロビン'
+        rbc: '赤血球'
+        wbc: '白血球'
+        urine_protein: '尿タンパク'
+  users:
+    index:
+      warning:
+        no_name: '名前を登録してください'
+    before_use:
+      warning:
+        no_name: '名前を登録してください'
+        name_exist: '既に登録済みの名前です'
+  easy_medical_checkups:
+    new:
+      warning:
+        no_name: '名前を登録してください'
+  full_medical_checkups:
+    new:
+      warning:
+        no_name: '名前を登録してください'
