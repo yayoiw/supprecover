@@ -22,15 +22,8 @@ class FullMedicalCheckupsController < ApplicationController
     @easy_medical_checkup = EasyMedicalCheckup.find_by(user_id: @user.id)
     @total_supplements = @full_medical_checkup.total_supplements(@easy_medical_checkup.recommended_supplements,
                                                                  @full_medical_checkup.recommended_supplements)
-
     @tweet_template = "#{@full_medical_checkup.user.name}さんへのおすすめサプリは、#{@total_supplements.map(&:name).join('、')}です！診断結果をチェックしてみてね！"
-
-    if @tweet_template.length > 140
-      truncated_text = @tweet_template[0..137] + '...'
-      @result_for_tweet = truncated_text
-    else
-      @result_for_tweet = @tweet_template
-    end
+    view_context.tweet_truncate
   end
 
   private

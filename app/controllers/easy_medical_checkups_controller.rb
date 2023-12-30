@@ -20,12 +20,7 @@ class EasyMedicalCheckupsController < ApplicationController
     @recommended_supplements_easy = @easy_medical_checkup.recommended_supplements
     supplement_names = @recommended_supplements_easy.map(&:name).join('、')
     @tweet_template = "#{@easy_medical_checkup.user.name}さんへのおすすめサプリは、#{supplement_names}です！診断結果をチェックしてみてね！"
-    if @tweet_template.length > 280
-      truncated_text = tweet_template[0..276] + '...'
-      @result_for_tweet = truncated_text
-    else
-      @result_for_tweet = @tweet_template
-    end
+    view_context.tweet_truncate
   end
 
   private
