@@ -289,7 +289,6 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   dockerfile-rails (>= 1.2)
-  execjs
   factory_bot_rails
   faker
   jbuilder (~> 2.7)
@@ -314,4 +313,4 @@ RUBY VERSION
    ruby 3.1.4p223
 
 BUNDLED WITH
-   2.2.22
+   2.5.3

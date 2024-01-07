@@ -43,6 +43,7 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'dockerfile-rails', '>= 1.2'
 end
 
 group :test do
@@ -55,8 +56,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'bootstrap', '~> 5.0.2'
-gem 'dockerfile-rails', '>= 1.2', group: :development
-gem 'execjs'
 gem 'pg', '~> 1.4'
 gem 'rails-i18n', '~> 6.0'
 gem 'rubocop', require: false
