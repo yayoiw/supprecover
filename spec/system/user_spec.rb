@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'ユーザー登録機能', type: :system, js: true do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.build(:user) }
   shared_examples_for '強制モーダルが消えるまで' do
     before do
       visit root_path
@@ -112,6 +112,7 @@ RSpec.describe 'ユーザー登録機能', type: :system, js: true do
     before do
       fill_in 'user_name', with: user.name
       click_on('先へすすむ')
+      user = User.first
       expect(current_path).to eq(root_path)
     end
 

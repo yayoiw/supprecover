@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe '完全版診断機能', type: :system do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.build(:user) }
   shared_examples_for '簡易版診断完了まで' do
     before do
       visit root_path
@@ -15,8 +15,9 @@ RSpec.describe '完全版診断機能', type: :system do
       expect(page).to have_no_css('.modal fade show')
       fill_in 'user_name', with: user.name
       click_on('先へすすむ')
-      visit new_user_easy_medical_checkups_path(user)
-      expect(current_path).to eq(new_user_easy_medical_checkups_path(user))
+      user = User.first
+      visit new_user_easy_medical_checkups_path(user.id)
+      expect(current_path).to eq(new_user_easy_medical_checkups_path(user.id))
       select 170, from: 'easy_medical_checkup_height'
       select 60, from: 'easy_medical_checkup_weight'
       fill_in 'easy_medical_checkup_blood_pressure_up', with: 120
@@ -29,7 +30,8 @@ RSpec.describe '完全版診断機能', type: :system do
       fill_in 'easy_medical_checkup_alt', with: 20
       fill_in 'easy_medical_checkup_gamma_gtp', with: 50
       click_button '送信'
-      expect(current_path).to eq(user_easy_medical_checkups_path(user))
+      user = User.first
+      expect(current_path).to eq(user_easy_medical_checkups_path(user.id))
       visit root_path
     end
   end
@@ -37,171 +39,38 @@ RSpec.describe '完全版診断機能', type: :system do
   context '完全版診断' do
     include_examples '簡易版診断完了まで'
     before do
-      visit new_user_full_medical_checkups_path(user)
-      expect(current_path).to eq(new_user_full_medical_checkups_path(user))
+      user = User.first
+      visit new_user_full_medical_checkups_path(user.id)
+      expect(current_path).to eq(new_user_full_medical_checkups_path(user.id))
     end
 
-    it '空腹時血糖のみ未入力' do
+    it '全項目未入力' do
       fill_in 'full_medical_checkup_fasting_blood_sugar', with: ''
-      fill_in 'full_medical_checkup_hba1c', with: 5.0
-      select '-', from: 'full_medical_checkup_urine_sugar'
-      fill_in 'full_medical_checkup_uric_acid', with: 4.5
-      fill_in 'full_medical_checkup_creatinine', with: 0.6
-      fill_in 'full_medical_checkup_egfr', with: 75
-      fill_in 'full_medical_checkup_hematocrit', with: 40
-      fill_in 'full_medical_checkup_hemoglobin', with: 14
-      fill_in 'full_medical_checkup_rbc', with: 425
-      fill_in 'full_medical_checkup_wbc', with: 5700
-      select '-', from: 'full_medical_checkup_urine_protein'
-      click_button '送信'
-      expect(current_path).to eq(user_full_medical_checkups_path(user))
-      expect(page).to have_text('空腹時血糖を入力してください')
-      # 期待する動作 弾かれる
-    end
-
-    it 'HbA1cのみ未入力' do
-      fill_in 'full_medical_checkup_fasting_blood_sugar', with: 85
       fill_in 'full_medical_checkup_hba1c', with: ''
       select '-', from: 'full_medical_checkup_urine_sugar'
-      fill_in 'full_medical_checkup_uric_acid', with: 4.5
-      fill_in 'full_medical_checkup_creatinine', with: 0.6
-      fill_in 'full_medical_checkup_egfr', with: 75
-      fill_in 'full_medical_checkup_hematocrit', with: 40
-      fill_in 'full_medical_checkup_hemoglobin', with: 14
-      fill_in 'full_medical_checkup_rbc', with: 425
-      fill_in 'full_medical_checkup_wbc', with: 5700
-      select '-', from: 'full_medical_checkup_urine_protein'
-      click_button '送信'
-      expect(current_path).to eq(user_full_medical_checkups_path(user))
-      expect(page).to have_text('HbA1cを入力してください')
-      # 期待する動作 弾かれる
-    end
-
-    it '尿酸のみ未入力' do
-      fill_in 'full_medical_checkup_fasting_blood_sugar', with: 85
-      fill_in 'full_medical_checkup_hba1c', with: 5.0
-      select '-', from: 'full_medical_checkup_urine_sugar'
-      fill_in 'full_medical_checkup_uric_acid', with: '尿酸値を入力してください'
-      fill_in 'full_medical_checkup_creatinine', with: 0.6
-      fill_in 'full_medical_checkup_egfr', with: 75
-      fill_in 'full_medical_checkup_hematocrit', with: 40
-      fill_in 'full_medical_checkup_hemoglobin', with: 14
-      fill_in 'full_medical_checkup_rbc', with: 425
-      fill_in 'full_medical_checkup_wbc', with: 5700
-      select '-', from: 'full_medical_checkup_urine_protein'
-      click_button '送信'
-      expect(current_path).to eq(user_full_medical_checkups_path(user))
-      expect(page).to have_text('')
-      # 期待する動作 弾かれる
-    end
-
-    it 'クレアチニンのみ未入力' do
-      fill_in 'full_medical_checkup_fasting_blood_sugar', with: 85
-      fill_in 'full_medical_checkup_hba1c', with: 5.0
-      select '-', from: 'full_medical_checkup_urine_sugar'
-      fill_in 'full_medical_checkup_uric_acid', with: 4.5
-      fill_in 'full_medical_checkup_creatinine', with: 'クレアチニンを入力してください'
-      fill_in 'full_medical_checkup_egfr', with: 75
-      fill_in 'full_medical_checkup_hematocrit', with: 40
-      fill_in 'full_medical_checkup_hemoglobin', with: 14
-      fill_in 'full_medical_checkup_rbc', with: 425
-      fill_in 'full_medical_checkup_wbc', with: 5700
-      select '-', from: 'full_medical_checkup_urine_protein'
-      click_button '送信'
-      expect(current_path).to eq(user_full_medical_checkups_path(user))
-      expect(page).to have_text('')
-      # 期待する動作 弾かれる
-    end
-
-    it 'eGFRのみ未入力' do
-      fill_in 'full_medical_checkup_fasting_blood_sugar', with: 85
-      fill_in 'full_medical_checkup_hba1c', with: 5.0
-      select '-', from: 'full_medical_checkup_urine_sugar'
-      fill_in 'full_medical_checkup_uric_acid', with: 4.5
-      fill_in 'full_medical_checkup_creatinine', with: 0.6
-      fill_in 'full_medical_checkup_egfr', with: 'eGFRを入力してください'
-      fill_in 'full_medical_checkup_hematocrit', with: 40
-      fill_in 'full_medical_checkup_hemoglobin', with: 14
-      fill_in 'full_medical_checkup_rbc', with: 425
-      fill_in 'full_medical_checkup_wbc', with: 5700
-      select '-', from: 'full_medical_checkup_urine_protein'
-      click_button '送信'
-      expect(current_path).to eq(user_full_medical_checkups_path(user))
-      expect(page).to have_text('')
-      # 期待する動作 弾かれる
-    end
-
-    it 'ヘマトクリットのみ未入力' do
-      fill_in 'full_medical_checkup_fasting_blood_sugar', with: 85
-      fill_in 'full_medical_checkup_hba1c', with: 5.0
-      select '-', from: 'full_medical_checkup_urine_sugar'
-      fill_in 'full_medical_checkup_uric_acid', with: 4.5
-      fill_in 'full_medical_checkup_creatinine', with: 0.6
-      fill_in 'full_medical_checkup_egfr', with: 75
-      fill_in 'full_medical_checkup_hematocrit', with: 'ヘマトクリットを入力してください'
-      fill_in 'full_medical_checkup_hemoglobin', with: 14
-      fill_in 'full_medical_checkup_rbc', with: 425
-      fill_in 'full_medical_checkup_wbc', with: 5700
-      select '-', from: 'full_medical_checkup_urine_protein'
-      click_button '送信'
-      expect(current_path).to eq(user_full_medical_checkups_path(user))
-      expect(page).to have_text('')
-      # 期待する動作 弾かれる
-    end
-
-    it 'ヘモグロビンのみ未入力' do
-      fill_in 'full_medical_checkup_fasting_blood_sugar', with: 85
-      fill_in 'full_medical_checkup_hba1c', with: 5.0
-      select '-', from: 'full_medical_checkup_urine_sugar'
-      fill_in 'full_medical_checkup_uric_acid', with: 4.5
-      fill_in 'full_medical_checkup_creatinine', with: 0.6
-      fill_in 'full_medical_checkup_egfr', with: 75
-      fill_in 'full_medical_checkup_hematocrit', with: 40
-      fill_in 'full_medical_checkup_hemoglobin', with: 'ヘモグロビンを入力してください'
-      fill_in 'full_medical_checkup_rbc', with: 425
-      fill_in 'full_medical_checkup_wbc', with: 5700
-      select '-', from: 'full_medical_checkup_urine_protein'
-      click_button '送信'
-      expect(current_path).to eq(user_full_medical_checkups_path(user))
-      expect(page).to have_text('')
-      # 期待する動作 弾かれる
-    end
-
-    it 'RBCのみ未入力' do
-      fill_in 'full_medical_checkup_fasting_blood_sugar', with: 85
-      fill_in 'full_medical_checkup_hba1c', with: 5.0
-      select '-', from: 'full_medical_checkup_urine_sugar'
-      fill_in 'full_medical_checkup_uric_acid', with: 4.5
-      fill_in 'full_medical_checkup_creatinine', with: 0.6
-      fill_in 'full_medical_checkup_egfr', with: 75
-      fill_in 'full_medical_checkup_hematocrit', with: 40
-      fill_in 'full_medical_checkup_hemoglobin', with: 14
-      fill_in 'full_medical_checkup_rbc', with: '赤血球を入力してください'
-      fill_in 'full_medical_checkup_wbc', with: 5700
-      select '-', from: 'full_medical_checkup_urine_protein'
-      click_button '送信'
-      expect(current_path).to eq(user_full_medical_checkups_path(user))
-      expect(page).to have_text('')
-      # 期待する動作 弾かれる
-    end
-
-    it 'WBCのみ未入力' do
-      fill_in 'full_medical_checkup_fasting_blood_sugar', with: 85
-      fill_in 'full_medical_checkup_hba1c', with: 5.0
-      select '-', from: 'full_medical_checkup_urine_sugar'
-      fill_in 'full_medical_checkup_uric_acid', with: 4.5
-      fill_in 'full_medical_checkup_creatinine', with: 0.6
-      fill_in 'full_medical_checkup_egfr', with: 75
-      fill_in 'full_medical_checkup_hematocrit', with: 40
-      fill_in 'full_medical_checkup_hemoglobin', with: 14
-      fill_in 'full_medical_checkup_rbc', with: 425
+      fill_in 'full_medical_checkup_uric_acid', with: ''
+      fill_in 'full_medical_checkup_creatinine', with: ''
+      fill_in 'full_medical_checkup_egfr', with: ''
+      fill_in 'full_medical_checkup_hematocrit', with: ''
+      fill_in 'full_medical_checkup_hemoglobin', with: ''
+      fill_in 'full_medical_checkup_rbc', with: ''
       fill_in 'full_medical_checkup_wbc', with: ''
       select '-', from: 'full_medical_checkup_urine_protein'
       click_button '送信'
-      expect(current_path).to eq(user_full_medical_checkups_path(user))
+      user = User.first
+      expect(current_path).to eq(user_full_medical_checkups_path(user.id))
+      expect(page).to have_text('空腹時血糖を入力してください')
+      expect(page).to have_text('HbA1cを入力してください')
+      expect(page).to have_text('尿酸値を入力してください')
+      expect(page).to have_text('クレアチニンを入力してください')
+      expect(page).to have_text('eGFRを入力してください')
+      expect(page).to have_text('ヘマトクリットを入力してください')
+      expect(page).to have_text('ヘモグロビンを入力してください')
+      expect(page).to have_text('赤血球を入力してください')
       expect(page).to have_text('白血球を入力してください')
       # 期待する動作 弾かれる
     end
+
 
     it '全てに有効な値を入力' do
       fill_in 'full_medical_checkup_fasting_blood_sugar', with: 85
@@ -216,7 +85,8 @@ RSpec.describe '完全版診断機能', type: :system do
       fill_in 'full_medical_checkup_wbc', with: 5700
       select '-', from: 'full_medical_checkup_urine_protein'
       click_button '送信'
-      expect(current_path).to eq(user_full_medical_checkups_path(user))
+      user = User.first
+      expect(current_path).to eq(user_full_medical_checkups_path(user.id))
       expect(page).to have_text('なお、サプリメントは栄養補助食品です。')
       # 期待する動作 結果画面に遷移
     end
@@ -225,8 +95,9 @@ RSpec.describe '完全版診断機能', type: :system do
   context '完全版診断後' do
     include_examples '簡易版診断完了まで'
     before do
-      visit new_user_full_medical_checkups_path(user)
-      expect(current_path).to eq(new_user_full_medical_checkups_path(user))
+      user = User.first
+      visit new_user_full_medical_checkups_path(user.id)
+      expect(current_path).to eq(new_user_full_medical_checkups_path(user.id))
       fill_in 'full_medical_checkup_fasting_blood_sugar', with: 85
       fill_in 'full_medical_checkup_hba1c', with: 5.0
       select '-', from: 'full_medical_checkup_urine_sugar'
@@ -239,7 +110,8 @@ RSpec.describe '完全版診断機能', type: :system do
       fill_in 'full_medical_checkup_wbc', with: 5700
       select '-', from: 'full_medical_checkup_urine_protein'
       click_button '送信'
-      expect(current_path).to eq(user_full_medical_checkups_path(user))
+      user = User.first
+      expect(current_path).to eq(user_full_medical_checkups_path(user.id))
       expect(page).to have_text('なお、サプリメントは栄養補助食品です。')
     end
 
