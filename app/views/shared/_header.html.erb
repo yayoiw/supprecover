@@ -1,23 +1,31 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-      <%= link_to root_path, class: "navbar-brand p-3" do %>
-        <i class="bi bi-capsule"></i> さぷリカバー
-      <% end %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-        <%= link_to 'Home', root_path, class:"nav-link active", aria: { current: 'page' } %>
-        </li>
-        <li class="nav-item">
-        <%= link_to 'About', about_path, class:"nav-link active", aria: { current: 'page' } %>
-        </li>
-        <li class="nav-item">
-        <%= link_to 'Contact', 'https://twitter.com/841wtb', class:"nav-link active", aria: { current: 'page' },target: :_blank %>
-        </li>
-      </ul>
+  <header class="header-container navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <%= link_to root_path, class: "navbar-brand p-3" do %>
+          <i class="bi bi-capsule"></i> <span class="navbar-brand h1">さぷリカバー</span>
+        <% end %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <% if current_page?(root_path) %>
+              <%= link_to 'Home', root_path, class: "nav-link active", aria: { current: 'page' } %>
+            <% else %>
+              <%= link_to 'Home', root_path, class: "nav-link" %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <% if current_page?(about_path) %>
+              <%= link_to 'About', about_path, class:"nav-link active", aria: { current: 'page' } %>
+            <% else %>
+            <%= link_to 'About', about_path, class:"nav-link" %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+          <%= link_to 'Contact', 'https://twitter.com/841wtb', class:"nav-link",target: :_blank %>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </header>

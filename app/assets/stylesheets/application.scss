@@ -14,23 +14,31 @@
  *= require_self
  */
 
+//  header
+ .container-fluid {
+  padding: 0 0;
+ }
+
+ .navbar {
+  padding: 0 0;
+ }
 
 
  .progress-container {
   background: white;
   position: sticky;
   top: 0;
-  z-index: 99;
+  z-index: 98;
  }
 
  .progress-bar{
-  height: 6px;
+  height: 5px;
   width: 0%;
   background: blue;
  }
 
  ul {
-  margin-bottom: 0; 
+  margin-bottom: 0;
 }
 
 .checkup_form {
