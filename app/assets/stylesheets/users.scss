@@ -9,6 +9,9 @@
   .checkup-area {
     margin: 3rem;
   }
+  .checkup-btn {
+    display: flex;
+  }
 }
 
 // about
@@ -57,5 +60,13 @@
   .contact {
     margin-top: 1rem;
     margin-left: 1rem;
+  }
+}
+
+// footer
+.footer-container {
+  margin: 3rem;
+  .footer-list {
+    list-style: none;
   }
 }
