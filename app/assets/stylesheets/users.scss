@@ -3,11 +3,7 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 
-li {
-  &.list_except {
-    list-style: circle;
-  }
-}
+
 
 
 .terms-of-use-main {
@@ -25,5 +21,23 @@ li {
   margin: 3rem;
     h2 {
     margin-bottom: 1rem;
+  }
+}
+
+.privacy-policy-container {
+  margin: 3rem;
+  h4 {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  p {
+    margin-bottom: 0;
+  }
+  .except li {
+    list-style: circle;
+  }
+  .contact {
+    margin-top: 1rem;
+    margin-left: 1rem;
   }
 }
