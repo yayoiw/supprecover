@@ -1,20 +1,27 @@
-  <div class="m-5">
+<div class="index-container">
+  <div class="description">
     さぷリカバーは健康診断の記録を入れることで、
     あなたにあったサプリをおすすめしてくれます。
   </div>
-  <div class="m-5">
-  <% if @user.easy_medical_checkup.present? %>
-      <%= link_to '簡易版', new_user_easy_medical_checkups_path(@user), class:'btn btn-success btn-lg', id:'after_easy_checkup' %>
-      検診結果を一部いれる（所要時間3分）
-    <br>
-    <%= link_to '完全版', new_user_full_medical_checkups_path(@user), class:'btn btn-primary btn-lg', id:'after_full_checkup' %>
-    検診結果を全部いれる（所要時間5分）
-  <% else %>
+  <div class="checkup-area">
+    <% if @user.easy_medical_checkup.present? %>
+      <div class="checkup-btn">
+        <%= link_to '簡易版', new_user_easy_medical_checkups_path(@user), class:'btn btn-success btn-lg', id:'after_easy_checkup' %>
+        <p>検診結果を一部いれる（所要時間3分）</p>
+      </div>
+      <div class="checkup-btn">
+      <%= link_to '完全版', new_user_full_medical_checkups_path(@user), class:'btn btn-primary btn-lg', id:'after_full_checkup' %>
+      <p>検診結果を全部いれる（所要時間5分）</p>
+      </div>
+    <% else %>
+    <div class="checkup-btn">
       <%= link_to '簡易版', new_user_easy_medical_checkups_path(@user), class:'btn btn-success btn-lg', id:'before_easy_checkup' %>
-      検診結果を一部いれる（所要時間3分）
-    <br>
-    <%= link_to '完全版', new_user_full_medical_checkups_path(@user), class:'btn btn-primary btn-lg disabled', id:'before_full_checkup' %>
-    検診結果を全部いれる（所要時間5分）　簡易版入力後に使えるよ！
-
-  <% end %>
+      <p>検診結果を一部いれる（所要時間3分）</p>
+    </div>
+    <div class="checkup-btn">
+      <%= link_to '完全版', new_user_full_medical_checkups_path(@user), class:'btn btn-primary btn-lg disabled', id:'before_full_checkup' %>
+      <p>検診結果を全部いれる（所要時間5分）  簡易版入力後に使えるよ！</p>
+    </div>
+    <% end %>
   </div>
+</div>

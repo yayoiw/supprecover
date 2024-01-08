@@ -11,6 +11,12 @@
   }
   .checkup-btn {
     display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    p {
+      margin-left: 1.5rem;
+      margin-bottom: 0;
+    }
   }
 }
 
