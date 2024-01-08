@@ -3,9 +3,26 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 
+// index
+.index-container {
+  margin: 3rem;
+  .checkup-area {
+    margin: 3rem;
+  }
+}
 
+// about
+.about-container {
+  margin: 3rem;
+  p {
+    margin-bottom: 0;
+  }
+  .description {
+    margin: 1.5rem;
+  }
+}
 
-
+// terms-of-use
 .terms-of-use-main {
   margin: 0.5rem 0;
   h4 {
@@ -24,6 +41,7 @@
   }
 }
 
+// privacy-policy
 .privacy-policy-container {
   margin: 3rem;
   h4 {
