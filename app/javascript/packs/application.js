@@ -11,3 +11,17 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+window.addEventListener('load', () => {
+  let progressBar = document.getElementById("loadingBar")
+  let progressContainer = document.getElementById("progressContainer");
+  let width = 1;
+  let interval = setInterval(function() {
+    if(width >= 100) {
+      clearInterval(interval);
+      progressContainer.style.opacity = "0";
+    }else{
+      width++;
+      progressBar.style.width = width + "%";
+    }
+  }, 10);
+});
