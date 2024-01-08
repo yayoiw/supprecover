@@ -23,7 +23,6 @@
   padding: 0 0;
  }
 
-
  .progress-container {
   background: white;
   position: sticky;
@@ -37,15 +36,8 @@
   background: blue;
  }
 
- ul {
-  margin-bottom: 0;
-}
-
-.checkup_form {
+.checkup-form-container {
   width: 70%;
   margin: 0 auto;
 }
 
-.field_with_errors {
-  display: inline
-}
