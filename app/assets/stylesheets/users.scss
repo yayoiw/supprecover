@@ -10,16 +10,20 @@ li {
 }
 
 
-.terms-of-use-main{
+.terms-of-use-main {
+  margin: 0.5rem 0;
   h4 {
-    margin-top: 2em;
-    margin-bottom: 0.5em;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
   }
   p {
     margin-bottom: 0;
   }
 }
 
-.terms-of-use-container h2 {
-  margin-bottom: 1em;
+.terms-of-use-container {
+  margin: 3rem;
+    h2 {
+    margin-bottom: 1rem;
+  }
 }
