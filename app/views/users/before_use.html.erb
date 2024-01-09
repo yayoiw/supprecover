@@ -15,8 +15,10 @@
             </label>
         </div>
         <div class="modal-footer">
-          <%= link_to '利用をやめる', 'https://www.yahoo.co.jp/',class: "btn btn-secondary", target: "_self" %>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="modalButton" disabled>利用を始める</button>
+          <%= link_to '利用をやめる', 'https://www.yahoo.co.jp/',class: "btn btn-quit", target: "_self" %>
+          <div class="cursor-not-allowed">
+            <button type="button" class="btn btn-agree" data-bs-dismiss="modal" id="modalButton" disabled>利用を始める</button>
+          </div>
           </div>
       </div>
     </div>
