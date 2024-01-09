@@ -36,8 +36,27 @@
   background: blue;
  }
 
+// common
+ .btn {
+  color: #fff;
+}
+
+ .list-unstyled {
+  margin-bottom: 0;
+ }
+
+//  checkup
 .checkup-form-container {
   width: 70%;
   margin: 0 auto;
+}
+
+
+
+.result-container {
+  margin: 3rem;
+  a {
+    text-decoration: none;
+  }
 }
 
