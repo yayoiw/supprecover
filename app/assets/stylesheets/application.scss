@@ -51,8 +51,6 @@
   margin: 0 auto;
 }
 
-
-
 .result-container {
   margin: 3rem;
   a {
@@ -60,3 +58,32 @@
   }
 }
 
+.btn-submit {
+  color: #fff;
+  background-color: #da209f;
+  border-bottom: 5px solid #7c135b;
+  &:hover {
+    margin-top: 3px;
+    background-color: #f325b1;
+    border-bottom: 2px solid #7c135b;
+    transition: all 0.3s ease
+  }
+}
+
+// footer
+footer {
+  color: #999;
+  .footer-container {
+    margin: 3rem;
+    .footer-list {
+      list-style: none;
+    }
+  }
+  a {
+    color: #999;
+    text-decoration: none;
+  &:hover {
+    color: #000;
+  }
+  }
+}
