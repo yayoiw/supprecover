@@ -30,7 +30,12 @@
 
 // index
 .index-container {
-  margin: 3rem;
+  .description {
+    margin: 0.5rem;
+    p {
+      display: inline-block;
+    }
+  }
   .checkup-area {
     margin: 3rem;
   }
@@ -39,8 +44,7 @@
     align-items: center;
     margin-bottom: 1rem;
     p {
-      margin-left: 1.5rem;
-      margin-bottom: 0;
+      margin-left: 1rem;
     }
     .before-checkup-warning {
       display: flex;
@@ -70,7 +74,6 @@
 }
 
 .before-use-container {
-  margin: 3rem;
   .signup-container {
     margin: 1rem;
   }
@@ -90,10 +93,6 @@
 
 // about
 .about-container {
-  margin: 3rem;
-  p {
-    margin-bottom: 0;
-  }
   .description {
     margin: 1.5rem;
   }
@@ -106,13 +105,9 @@
     margin-top: 2rem;
     margin-bottom: 0.5rem;
   }
-  p {
-    margin-bottom: 0;
-  }
 }
 
 .terms-of-use-container {
-  margin: 3rem;
     h2 {
     margin-bottom: 1rem;
   }
@@ -120,14 +115,11 @@
 
 // privacy-policy
 .privacy-policy-container {
-  margin: 3rem;
   h4 {
     margin-top: 2rem;
     margin-bottom: 0.5rem;
   }
-  p {
-    margin-bottom: 0;
-  }
+
   .except li {
     list-style: circle;
   }
@@ -138,11 +130,20 @@
 }
 
 
-@media screen and (max-width: 600px) {
-
+@media screen and (max-width: 768px) {
+  .checkup-btn {
+    .before-checkup-warning {
+      display: flex;
+      flex-direction: column;
+    }
+}
 }
 
 
-@media screen and (max-width: 375px) {
-
+@media screen and (max-width: 428px) {
+  .signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

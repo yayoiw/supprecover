@@ -24,8 +24,10 @@
     </div>
   </div>
   <%= render 'shared/error_message', object: @user %>
-  <div class="before-use-container">
-    <p>さぷリカバーは健康診断の記録を入れることで、あなたにあったサプリをおすすめしてくれます。</p>
+  <div class="container before-use-container">
+    <div class="description">
+      <p><span>さぷリカバーは健康診断の記録を入れることで、</span><span>あなたにあったサプリをおすすめしてくれます。</span></p>
+    </div>
     <div class="signup-container">
       <%= form_with model:@user, local: true do |f| %>
         <%= f.label :name %>
@@ -39,7 +41,7 @@
 <% else %>
 
   <%= render 'shared/error_message', object: @user %>
-  <div class="before-use-container">
+  <div class="container before-use-container">
   <p>さぷリカバーは健康診断の記録を入れることで、あなたにあったサプリをおすすめしてくれます。</p>
   <div class="signup-container">
     <%= form_with model:@user, local: true do |f| %>
