@@ -24,11 +24,9 @@
     </div>
   </div>
   <%= render 'shared/error_message', object: @user %>
-  <div class="container before-use-container">
-    <div class="description">
-      <p><span>さぷリカバーは健康診断の記録を入れることで、</span><span>あなたにあったサプリをおすすめしてくれます。</span></p>
-    </div>
-    <div class="signup-container">
+  <div class="row">
+      <p>さぷリカバーは健康診断の記録を入れることで、<br class="d-lg-none">あなたにあったサプリをおすすめしてくれます。</p>
+  <div class="row m-4 d-flex flex-column flex-md-row">
       <%= form_with model:@user, local: true do |f| %>
         <%= f.label :name %>
         <%= f.text_field :name %>
@@ -39,16 +37,15 @@
   <%= javascript_pack_tag 'custom_modal' %>
 
 <% else %>
-
-  <%= render 'shared/error_message', object: @user %>
-  <div class="container before-use-container">
-  <p>さぷリカバーは健康診断の記録を入れることで、あなたにあったサプリをおすすめしてくれます。</p>
-  <div class="signup-container">
-    <%= form_with model:@user, local: true do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.submit '先へすすむ',class: 'btn btn-signup' %>
-    <% end %>
+  <div class="row">
+    <%= render 'shared/error_message', object: @user %>
+    <p>さぷリカバーは健康診断の記録を入れることで、<br class="d-lg-none">あなたにあったサプリをおすすめしてくれます。</p>
+    <div class="row m-4 d-flex flex-column flex-md-row">
+      <%= form_with model:@user, local: true do |f| %>
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+            <%= f.submit '先へすすむ',class: 'btn btn-signup' %>
+      <% end %>
     </div>
   </div>
 <% end %>

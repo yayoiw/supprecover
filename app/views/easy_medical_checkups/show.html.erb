@@ -1,4 +1,4 @@
-<div class="container result-container easy-result-container">
+<div class="row">
   <% if @easy_medical_checkup.recommended_supplements.empty? %>
     <p>あなたは現在健康であるため、健康診断数値改善のためのサプリは不要になります。</p>
   <% else %>
@@ -8,12 +8,14 @@
       <p><%= supplement.description %></p>
     <% end %>
   <% end %>
-
-  <p>なお、サプリメントは栄養補助食品です。</p>
-  <p>日常の生活を見直しつつ、健康維持のために補助として使っていきましょう。</p>
-
-  <%= link_to "https://twitter.com/intent/tweet?text=#{@result_for_tweet}", target: "_blank" do %>
-    <%= image_tag('xlogo.png', alt: 'X(Twitter)', size: '35x35') %>
-    X(twitter)でつぶやく
-  <% end %>
+  <div class="mt-2">
+    <p>なお、サプリメントは栄養補助食品です。</p>
+    <p>日常の生活を見直しつつ、健康維持のために補助として使っていきましょう。</p>
+  </div>
+  <div class="m-2">
+    <%= link_to "https://twitter.com/intent/tweet?text=#{@result_for_tweet}", target: "_blank" do %>
+      <%= image_tag('xlogo.png', alt: 'X(Twitter)', size: '35x35') %>
+      X(twitter)でつぶやく
+    <% end %>
+  </div>
 </div>

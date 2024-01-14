@@ -1,5 +1,6 @@
-<%= render 'shared/error_message', object: @full_medical_checkup %>
-  <div class="container checkup-form-container">
+<div class="row">
+  <div class="offset-lg-3 col-lg-6  offset-md-2 col-md-8">
+    <%= render 'shared/error_message', object: @full_medical_checkup %>
     <%= form_with model:[@user, @full_medical_checkup], url:user_full_medical_checkups_path(@user), method: :post, local: true do |f| %>
       <div class="form-group mb-4">
       <%= f.label :fasting_blood_sugar, FullMedicalCheckup.human_attribute_name(:fasting_blood_sugar) %>
@@ -55,8 +56,9 @@
       <%= f.label :urine_protein, FullMedicalCheckup.human_attribute_name(:urine_protein) %>
       <%= f.select :urine_protein,{'-': 0, '±': 1, '+': 2, '++': 3, '+++': 4},{}, class: "form-control" %>
       </div>
-      <div class="submit">
-        <%= f.submit '送信', class: 'btn btn-submit' %>
+      <div class="submit d-grid gap2 col-sm-6 mx-auto mt-5">
+          <%= f.submit '送信', class: 'btn btn-submit' %>
       </div>
     <% end %>
   </div>
+</div>

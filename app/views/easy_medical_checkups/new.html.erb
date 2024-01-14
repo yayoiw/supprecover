@@ -1,5 +1,6 @@
-<%= render 'shared/error_message', object: @easy_medical_checkup %>
-  <div class="container checkup-form-container">
+<div class="row">
+  <div class="offset-lg-3 col-lg-6  offset-md-2 col-md-8">
+    <%= render 'shared/error_message', object: @easy_medical_checkup %>
     <%= form_with model:[@user, @easy_medical_checkup], url:user_easy_medical_checkups_path(@user), method: :post, local: true do |f| %>
       <div class="form-group mb-4">
       <%= f.label :height, EasyMedicalCheckup.human_attribute_name(:height) %>
@@ -55,8 +56,9 @@
       <%= f.label :gamma_gtp, EasyMedicalCheckup.human_attribute_name(:gamma_gtp) %>
       <%= f.text_field :gamma_gtp, class: "form-control" %>
       </div>
-      <div class="submit">
+      <div class="submit d-grid gap2 col-sm-6 mx-auto mt-5">
         <%= f.submit '送信', class: 'btn btn-submit' %>
       </div>
     <% end %>
   </div>
+</div>
