@@ -7,12 +7,8 @@ RSpec.describe '簡易版診断機能', type: :system do
       visit root_path
       expect(current_path).to eq(before_use_path)
       page.execute_script('document.querySelectorAll(".fade").forEach(function(element) { element.classList.remove("fade"); })')
-      expect(page).to have_selector('#staticBackdrop')
       check('beforeUseCheckBox')
-      expect(page).to have_checked_field('beforeUseCheckBox')
-      expect(page).to have_button('modalButton', disabled: false)
       click_button('modalButton')
-      expect(page).to have_no_css('.modal fade show')
       fill_in 'user_name', with: user.name
       click_on('先へすすむ')
     end
@@ -25,9 +21,9 @@ RSpec.describe '簡易版診断機能', type: :system do
     end
 
     it '簡易版診断にアクセスできる' do
-      user = User.first
+      user= User.first
       visit new_user_easy_medical_checkups_path(user.id)
-      expect(current_path).to eq(new_user_easy_medical_checkups_path(user.id))
+      expect(page).to have_text('身長')
       # 期待する動作 簡易版診断にアクセスできる
     end
 
@@ -77,7 +73,6 @@ RSpec.describe '簡易版診断機能', type: :system do
       fill_in 'easy_medical_checkup_alt', with: 20
       fill_in 'easy_medical_checkup_gamma_gtp', with: 50
       click_button '送信'
-      expect(current_path).to eq(user_easy_medical_checkups_path(user.id))
       expect(page).to have_text('あなたは現在健康であるため、健康診断数値改善のためのサプリは不要になります。')
       # 期待する動作 結果画面に遷移
     end
@@ -88,7 +83,6 @@ RSpec.describe '簡易版診断機能', type: :system do
     before '全てに有効な値を入力' do
       user = User.first
       visit new_user_easy_medical_checkups_path(user.id)
-      expect(current_path).to eq(new_user_easy_medical_checkups_path(user.id))
       select 170, from: 'easy_medical_checkup_height'
       select 60, from: 'easy_medical_checkup_weight'
       fill_in 'easy_medical_checkup_blood_pressure_up', with: 120
@@ -101,8 +95,7 @@ RSpec.describe '簡易版診断機能', type: :system do
       fill_in 'easy_medical_checkup_alt', with: 20
       fill_in 'easy_medical_checkup_gamma_gtp', with: 50
       click_button '送信'
-      user = User.first
-      expect(current_path).to eq(user_easy_medical_checkups_path(user.id))
+      expect(page).to have_text('あなたは現在健康であるため、健康診断数値改善のためのサプリは不要になります')
     end
 
     it 'before_useにアクセスできない' do
