@@ -23,14 +23,27 @@
       </div>
     </div>
   </div>
-  <%= render 'shared/error_message', object: @user %>
   <div class="row">
-      <p>さぷリカバーは健康診断の記録を入れることで、<br class="d-lg-none">あなたにあったサプリをおすすめしてくれます。</p>
-  <div class="row m-4 d-flex flex-column flex-md-row">
+    <p>さぷリカバーは健康診断の記録を入れることで、<br class="d-lg-none">あなたにあったサプリをおすすめしてくれます。</p>
+    <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 mt-3">
       <%= form_with model:@user, local: true do |f| %>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-        <%= f.submit '先へすすむ',class: 'btn btn-signup' %>
+        <div class="row">
+          <div class="col-sm-9 mb-3">
+            <div class="row align-items-center">
+              <div class="col-sm-3">
+                <%= f.label :name, class: "form-label" %>
+              </div>
+              <div class="col-sm-9">
+                <%= f.text_field :name, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 mb-3">
+            <div class="d-grid gap-2 d-sm-block">
+              <%= f.submit '先へすすむ',class: 'btn btn-signup' %>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
@@ -38,13 +51,26 @@
 
 <% else %>
   <div class="row">
-    <%= render 'shared/error_message', object: @user %>
     <p>さぷリカバーは健康診断の記録を入れることで、<br class="d-lg-none">あなたにあったサプリをおすすめしてくれます。</p>
-    <div class="row m-4 d-flex flex-column flex-md-row">
+    <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 mt-3">
       <%= form_with model:@user, local: true do |f| %>
-            <%= f.label :name %>
-            <%= f.text_field :name %>
-            <%= f.submit '先へすすむ',class: 'btn btn-signup' %>
+        <div class="row">
+          <div class="col-sm-9 mb-3">
+            <div class="row align-items-center">
+              <div class="col-sm-2">
+                <%= f.label :name, class: "form-label" %>
+              </div>
+              <div class="col-sm-10">
+                <%= f.text_field :name, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 mb-3">
+            <div class="d-grid gap-2 d-sm-block">
+              <%= f.submit '先へすすむ',class: 'btn btn-signup' %>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
