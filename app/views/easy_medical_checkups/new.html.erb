@@ -1,60 +1,64 @@
-<%= render 'shared/error_message', object: @easy_medical_checkup %>
-  <%= form_with model:[@user, @easy_medical_checkup], url:user_easy_medical_checkups_path(@user), method: :post, local: true, class: "checkup_form" do |f| %>
-    <div class="form-group mb-4">
-    <%= f.label :height, EasyMedicalCheckup.human_attribute_name(:height) %>
-    <%= f.select :height, 140..200,{ include_blank: '選択して下さい' }, {class: "form-control"}%>
-    </div>
+<div class="row">
+  <div class="offset-lg-3 col-lg-6  offset-md-2 col-md-8">
+    <%= render 'shared/error_message', object: @easy_medical_checkup %>
+    <%= form_with model:[@user, @easy_medical_checkup], url:user_easy_medical_checkups_path(@user), method: :post, local: true do |f| %>
+      <div class="form-group mb-4">
+      <%= f.label :height, EasyMedicalCheckup.human_attribute_name(:height) %>
+      <%= f.select :height, 140..200,{ include_blank: '選択して下さい' }, {class: "form-control"}%>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :weight, EasyMedicalCheckup.human_attribute_name(:weight) %>
-    <%= f.select :weight, 40..150,{ include_blank: '選択して下さい' }, {class: "form-control"}%>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :weight, EasyMedicalCheckup.human_attribute_name(:weight) %>
+      <%= f.select :weight, 40..150,{ include_blank: '選択して下さい' }, {class: "form-control"}%>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :blood_pressure_up, EasyMedicalCheckup.human_attribute_name(:blood_pressure_up) %>
-    <%= f.text_field :blood_pressure_up, class: "form-control" %>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :blood_pressure_up, EasyMedicalCheckup.human_attribute_name(:blood_pressure_up) %>
+      <%= f.text_field :blood_pressure_up, class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :blood_pressure_down, EasyMedicalCheckup.human_attribute_name(:blood_pressure_down) %>
-    <%= f.text_field :blood_pressure_down, class: "form-control" %>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :blood_pressure_down, EasyMedicalCheckup.human_attribute_name(:blood_pressure_down) %>
+      <%= f.text_field :blood_pressure_down, class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :total_cholesterol, EasyMedicalCheckup.human_attribute_name(:total_cholesterol) %>
-    <%= f.text_field :total_cholesterol, class: "form-control" %>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :total_cholesterol, EasyMedicalCheckup.human_attribute_name(:total_cholesterol) %>
+      <%= f.text_field :total_cholesterol, class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :hdl_cholesterol, EasyMedicalCheckup.human_attribute_name(:hdl_cholesterol) %>
-    <%= f.text_field :hdl_cholesterol, class: "form-control" %>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :hdl_cholesterol, EasyMedicalCheckup.human_attribute_name(:hdl_cholesterol) %>
+      <%= f.text_field :hdl_cholesterol, class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :ldl_cholesterol, EasyMedicalCheckup.human_attribute_name(:ldl_cholesterol) %>
-    <%= f.text_field :ldl_cholesterol,class: "form-control" %>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :ldl_cholesterol, EasyMedicalCheckup.human_attribute_name(:ldl_cholesterol) %>
+      <%= f.text_field :ldl_cholesterol,class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :neutral_fat, EasyMedicalCheckup.human_attribute_name(:neutral_fat) %>
-    <%= f.text_field :neutral_fat, class: "form-control" %>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :neutral_fat, EasyMedicalCheckup.human_attribute_name(:neutral_fat) %>
+      <%= f.text_field :neutral_fat, class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :ast, EasyMedicalCheckup.human_attribute_name(:ast) %>
-    <%= f.text_field :ast, class: "form-control" %>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :ast, EasyMedicalCheckup.human_attribute_name(:ast) %>
+      <%= f.text_field :ast, class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :alt, EasyMedicalCheckup.human_attribute_name(:alt) %>
-    <%= f.text_field :alt, class: "form-control" %>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :alt, EasyMedicalCheckup.human_attribute_name(:alt) %>
+      <%= f.text_field :alt, class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :gamma_gtp, EasyMedicalCheckup.human_attribute_name(:gamma_gtp) %>
-    <%= f.text_field :gamma_gtp, class: "form-control" %>
-    </div>
-
-    <%= f.submit '送信', class: 'btn btn-primary' %>
-
-  <% end %>
+      <div class="form-group mb-4">
+      <%= f.label :gamma_gtp, EasyMedicalCheckup.human_attribute_name(:gamma_gtp) %>
+      <%= f.text_field :gamma_gtp, class: "form-control" %>
+      </div>
+      <div class="submit d-grid gap2 col-sm-6 mx-auto mt-5">
+        <%= f.submit '送信', class: 'btn btn-submit' %>
+      </div>
+    <% end %>
+  </div>
+</div>

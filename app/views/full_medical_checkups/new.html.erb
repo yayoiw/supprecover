@@ -1,60 +1,64 @@
-<%= render 'shared/error_message', object: @full_medical_checkup %>
-  <%= form_with model:[@user, @full_medical_checkup], url:user_full_medical_checkups_path(@user), method: :post, local: true, class: "checkup_form" do |f| %>
-    <div class="form-group mb-4">
-    <%= f.label :fasting_blood_sugar, FullMedicalCheckup.human_attribute_name(:fasting_blood_sugar) %>
-    <%= f.text_field :fasting_blood_sugar, class: "form-control" %>
-    </div>
+<div class="row">
+  <div class="offset-lg-3 col-lg-6  offset-md-2 col-md-8">
+    <%= render 'shared/error_message', object: @full_medical_checkup %>
+    <%= form_with model:[@user, @full_medical_checkup], url:user_full_medical_checkups_path(@user), method: :post, local: true do |f| %>
+      <div class="form-group mb-4">
+      <%= f.label :fasting_blood_sugar, FullMedicalCheckup.human_attribute_name(:fasting_blood_sugar) %>
+      <%= f.text_field :fasting_blood_sugar, class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :hba1c, FullMedicalCheckup.human_attribute_name(:hba1c) %>
-    <%= f.text_field :hba1c, class: "form-control" %>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :hba1c, FullMedicalCheckup.human_attribute_name(:hba1c) %>
+      <%= f.text_field :hba1c, class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :urine_sugar, FullMedicalCheckup.human_attribute_name(:urine_sugar) %>
-    <%= f.select :urine_sugar,{'-': 0, '±': 1, '+': 2, '++': 3, '+++': 4},{}, class: "form-control" %>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :urine_sugar, FullMedicalCheckup.human_attribute_name(:urine_sugar) %>
+      <%= f.select :urine_sugar,{'-': 0, '±': 1, '+': 2, '++': 3, '+++': 4},{}, class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :uric_acid, FullMedicalCheckup.human_attribute_name(:uric_acid) %>
-    <%= f.text_field :uric_acid, class: "form-control" %>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :uric_acid, FullMedicalCheckup.human_attribute_name(:uric_acid) %>
+      <%= f.text_field :uric_acid, class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :creatinine, FullMedicalCheckup.human_attribute_name(:creatinine) %>
-    <%= f.text_field :creatinine, class: "form-control" %>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :creatinine, FullMedicalCheckup.human_attribute_name(:creatinine) %>
+      <%= f.text_field :creatinine, class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :egfr, FullMedicalCheckup.human_attribute_name(:egfr) %>
-    <%= f.text_field :egfr, class: "form-control" %>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :egfr, FullMedicalCheckup.human_attribute_name(:egfr) %>
+      <%= f.text_field :egfr, class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :hematocrit, FullMedicalCheckup.human_attribute_name(:hematocrit) %>
-    <%= f.text_field :hematocrit,class: "form-control" %>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :hematocrit, FullMedicalCheckup.human_attribute_name(:hematocrit) %>
+      <%= f.text_field :hematocrit,class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :hemoglobin, FullMedicalCheckup.human_attribute_name(:hemoglobin) %>
-    <%= f.text_field :hemoglobin, class: "form-control" %>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :hemoglobin, FullMedicalCheckup.human_attribute_name(:hemoglobin) %>
+      <%= f.text_field :hemoglobin, class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :rbc, FullMedicalCheckup.human_attribute_name(:rbc) %>
-    <%= f.text_field :rbc, class: "form-control" %>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :rbc, FullMedicalCheckup.human_attribute_name(:rbc) %>
+      <%= f.text_field :rbc, class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :wbc, FullMedicalCheckup.human_attribute_name(:wbc) %>
-    <%= f.text_field :wbc, class: "form-control" %>
-    </div>
+      <div class="form-group mb-4">
+      <%= f.label :wbc, FullMedicalCheckup.human_attribute_name(:wbc) %>
+      <%= f.text_field :wbc, class: "form-control" %>
+      </div>
 
-    <div class="form-group mb-4">
-    <%= f.label :urine_protein, FullMedicalCheckup.human_attribute_name(:urine_protein) %>
-    <%= f.select :urine_protein,{'-': 0, '±': 1, '+': 2, '++': 3, '+++': 4},{}, class: "form-control" %>
-    </div>
-
-    <%= f.submit '送信', class: 'btn btn-primary' %>
-
-  <% end %>
+      <div class="form-group mb-4">
+      <%= f.label :urine_protein, FullMedicalCheckup.human_attribute_name(:urine_protein) %>
+      <%= f.select :urine_protein,{'-': 0, '±': 1, '+': 2, '++': 3, '+++': 4},{}, class: "form-control" %>
+      </div>
+      <div class="submit d-grid gap2 col-sm-6 mx-auto mt-5">
+          <%= f.submit '送信', class: 'btn btn-submit' %>
+      </div>
+    <% end %>
+  </div>
+</div>

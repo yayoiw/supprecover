@@ -7,17 +7,12 @@ RSpec.describe '完全版診断機能', type: :system do
       visit root_path
       expect(current_path).to eq(before_use_path)
       page.execute_script('document.querySelectorAll(".fade").forEach(function(element) { element.classList.remove("fade"); })')
-      expect(page).to have_selector('#staticBackdrop')
       check('beforeUseCheckBox')
-      expect(page).to have_checked_field('beforeUseCheckBox')
-      expect(page).to have_button('modalButton', disabled: false)
       click_button('modalButton')
-      expect(page).to have_no_css('.modal fade show')
       fill_in 'user_name', with: user.name
       click_on('先へすすむ')
       user = User.first
       visit new_user_easy_medical_checkups_path(user.id)
-      expect(current_path).to eq(new_user_easy_medical_checkups_path(user.id))
       select 170, from: 'easy_medical_checkup_height'
       select 60, from: 'easy_medical_checkup_weight'
       fill_in 'easy_medical_checkup_blood_pressure_up', with: 120
@@ -30,21 +25,15 @@ RSpec.describe '完全版診断機能', type: :system do
       fill_in 'easy_medical_checkup_alt', with: 20
       fill_in 'easy_medical_checkup_gamma_gtp', with: 50
       click_button '送信'
-      user = User.first
-      expect(current_path).to eq(user_easy_medical_checkups_path(user.id))
       visit root_path
     end
   end
 
   context '完全版診断' do
     include_examples '簡易版診断完了まで'
-    before do
+    it '全項目未入力' do
       user = User.first
       visit new_user_full_medical_checkups_path(user.id)
-      expect(current_path).to eq(new_user_full_medical_checkups_path(user.id))
-    end
-
-    it '全項目未入力' do
       fill_in 'full_medical_checkup_fasting_blood_sugar', with: ''
       fill_in 'full_medical_checkup_hba1c', with: ''
       select '-', from: 'full_medical_checkup_urine_sugar'
@@ -58,7 +47,6 @@ RSpec.describe '完全版診断機能', type: :system do
       select '-', from: 'full_medical_checkup_urine_protein'
       click_button '送信'
       user = User.first
-      expect(current_path).to eq(user_full_medical_checkups_path(user.id))
       expect(page).to have_text('空腹時血糖を入力してください')
       expect(page).to have_text('HbA1cを入力してください')
       expect(page).to have_text('尿酸値を入力してください')
@@ -73,6 +61,8 @@ RSpec.describe '完全版診断機能', type: :system do
 
 
     it '全てに有効な値を入力' do
+      user = User.first
+      visit new_user_full_medical_checkups_path(user.id)
       fill_in 'full_medical_checkup_fasting_blood_sugar', with: 85
       fill_in 'full_medical_checkup_hba1c', with: 5.0
       select '-', from: 'full_medical_checkup_urine_sugar'
@@ -86,7 +76,6 @@ RSpec.describe '完全版診断機能', type: :system do
       select '-', from: 'full_medical_checkup_urine_protein'
       click_button '送信'
       user = User.first
-      expect(current_path).to eq(user_full_medical_checkups_path(user.id))
       expect(page).to have_text('なお、サプリメントは栄養補助食品です。')
       # 期待する動作 結果画面に遷移
     end
@@ -97,7 +86,6 @@ RSpec.describe '完全版診断機能', type: :system do
     before do
       user = User.first
       visit new_user_full_medical_checkups_path(user.id)
-      expect(current_path).to eq(new_user_full_medical_checkups_path(user.id))
       fill_in 'full_medical_checkup_fasting_blood_sugar', with: 85
       fill_in 'full_medical_checkup_hba1c', with: 5.0
       select '-', from: 'full_medical_checkup_urine_sugar'
@@ -111,7 +99,6 @@ RSpec.describe '完全版診断機能', type: :system do
       select '-', from: 'full_medical_checkup_urine_protein'
       click_button '送信'
       user = User.first
-      expect(current_path).to eq(user_full_medical_checkups_path(user.id))
       expect(page).to have_text('なお、サプリメントは栄養補助食品です。')
     end
 

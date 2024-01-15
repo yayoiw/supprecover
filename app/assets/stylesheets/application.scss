@@ -14,30 +14,119 @@
  *= require_self
  */
 
-
+//  header
+ .navbar {
+  padding: 0 0;
+ }
 
  .progress-container {
   background: white;
   position: sticky;
   top: 0;
-  z-index: 99;
+  z-index: 98;
  }
 
  .progress-bar{
-  height: 6px;
+  height: 5px;
   width: 0%;
   background: blue;
  }
 
- ul {
-  margin-bottom: 0; 
+// common
+
+ .btn {
+  color: #fff;
 }
 
-.checkup_form {
-  width: 70%;
-  margin: 0 auto;
+p {
+  margin-bottom: 0;
 }
 
-.field_with_errors {
-  display: inline
+a {
+  text-decoration: none;
+}
+
+
+ .btn-quit {
+  background-color: #19cbdfd7;
+  border-bottom: 5px solid #10818ed7;
+  &:hover {
+    margin-top: 3px;
+    background-color: #1bdff5d7;
+    border-bottom: 2px solid #10818ed7;
+    transition: all 0.3s ease
+  }
+}
+ .btn-agree {
+  background-color: #df19dfd7;
+  border-bottom: 5px solid #991199d7;
+  &:hover {
+    margin-top: 3px;
+    background-color: #fc20fcd7;
+    border-bottom: 2px solid #991199d7;
+    transition: all 0.3s ease
+  }
+ }
+ .cursor-not-allowed {
+  cursor: not-allowed;
+ }
+
+  .btn-easy-checkup {
+    background-color: #17cf95b8;
+    border-bottom: 5px solid #094e389c;
+    &:hover {
+      margin-top: 3px;
+      background-color: #1ef6b2;
+      border-bottom: 2px solid #094e389c;
+      transition: all 0.3s ease
+    }
+  }
+  .btn-full-checkup {
+    background-color: #1764b8;
+    border-bottom: 5px solid #0b2f56;
+    &:hover {
+      margin-top: 3px;
+      background-color: #29a3ef;
+      border-bottom: 2px solid #0b2f56;
+      transition: all 0.3s ease
+    }
+  }
+
+
+  .btn-signup {
+    background-color: #20da45;
+    border-bottom: 5px solid #15942e;
+    &:hover {
+      margin-top: 3px;
+      background-color: #27f751;;
+      border-bottom: 2px solid #15942e;
+      transition: all 0.3s ease
+    }
+  }
+
+.btn-submit {
+  color: #fff;
+  background-color: #da209f;
+  border-bottom: 5px solid #7c135b;
+  &:hover {
+    margin-top: 3px;
+    background-color: #f325b1;
+    border-bottom: 2px solid #7c135b;
+    transition: all 0.3s ease
+  }
+}
+
+// footer
+.footer {
+  color: #999;
+  .footer-list {
+    list-style: none;
+  }
+  a {
+    color: #999;
+    text-decoration: none;
+    &:hover {
+      color: #000;
+    }
+  }
 }

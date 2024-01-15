@@ -1,20 +1,26 @@
-  <div class="m-5">
-    さぷリカバーは健康診断の記録を入れることで、
-    あなたにあったサプリをおすすめしてくれます。
+<div class="row d-flex flex-column">
+    <p>さぷリカバーは健康診断の記録を入れることで、</p>
+    <p>あなたにあったサプリをおすすめしてくれます。</p>
+  <div class="row checkup-area mt-5">
+      <div class="d-grid gap-2 col-sm-5 mx-auto">
+        <div class="checkup-btn">
+          <%= link_to '簡易版', new_user_easy_medical_checkups_path(@user), class:'btn btn-easy-checkup text-nowrap d-grid gap-2', id:'easy_checkup' %>
+        </div>
+        <p class="text-center">検診結果を一部いれる</p>
+      </div>
+      <% if @user.easy_medical_checkup.present? %>
+        <div class="checkup-btn col-sm-5 mx-auto mt-4 mt-sm-0">
+          <%= link_to '完全版', new_user_full_medical_checkups_path(@user), class:'btn btn-full-checkup text-nowrap d-grid gap-2', id:'after_full_checkup' %>
+          <p class="text-center">検診結果を全部いれる</p>
+        </div>
+      <% else %>
+      <div class="cursor-not-allowed col-sm-5 mx-auto mt-4 mt-sm-0">
+        <div class="checkup-btn">
+          <%= link_to '完全版', new_user_full_medical_checkups_path(@user), class:'btn btn-full-checkup disabled text-nowrap d-grid gap-2', id:'before_full_checkup' %>
+        </div>
+          <p class="text-center"><s>検診結果を全部いれる</s></p>
+          <p class="text-center"> 簡易版入力後に使えるよ！</p>
+      </div>
+    <% end %>
   </div>
-  <div class="m-5">
-  <% if @user.easy_medical_checkup.present? %>
-      <%= link_to '簡易版', new_user_easy_medical_checkups_path(@user), class:'btn btn-success btn-lg', id:'after_easy_checkup' %>
-      検診結果を一部いれる（所要時間3分）
-    <br>
-    <%= link_to '完全版', new_user_full_medical_checkups_path(@user), class:'btn btn-primary btn-lg', id:'after_full_checkup' %>
-    検診結果を全部いれる（所要時間5分）
-  <% else %>
-      <%= link_to '簡易版', new_user_easy_medical_checkups_path(@user), class:'btn btn-success btn-lg', id:'before_easy_checkup' %>
-      検診結果を一部いれる（所要時間3分）
-    <br>
-    <%= link_to '完全版', new_user_full_medical_checkups_path(@user), class:'btn btn-primary btn-lg disabled', id:'before_full_checkup' %>
-    検診結果を全部いれる（所要時間5分）　簡易版入力後に使えるよ！
-
-  <% end %>
-  </div>
+</div>

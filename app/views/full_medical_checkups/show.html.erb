@@ -1,20 +1,21 @@
-<% if @full_medical_checkup.recommended_supplements.empty? && @easy_medical_checkup.recommended_supplements.empty? %>
-  <p>あなたは現在健康であるため、健康診断数値改善のためのサプリは不要になります。</p>
-<% else %>
-  <p>あなたにおすすめのサプリは</p>
-  <% @total_supplements.each do |supplement| %>
-    <p><%= link_to supplement.name, "https://jp.iherb.com/search?kw=#{supplement.name}", target: "_blank"%></p>
-    <p><%= supplement.description %></p>
+<div class="row">
+  <% if @full_medical_checkup.recommended_supplements.empty? && @easy_medical_checkup.recommended_supplements.empty? %>
+    <p>あなたは現在健康であるため、健康診断数値改善のためのサプリは不要になります。</p>
+  <% else %>
+    <p>あなたにおすすめのサプリは</p>
+    <% @total_supplements.each do |supplement| %>
+      <p><%= link_to supplement.name, "https://jp.iherb.com/search?kw=#{supplement.name}", target: "_blank"%></p>
+      <p><%= supplement.description %></p>
+    <% end %>
   <% end %>
-
-<% end %>
-
-
-なお、サプリメントは栄養補助食品です。
-日常の生活を見直しつつ、健康維持のために補助として使っていきましょう。
-
-
-<%= link_to "https://twitter.com/intent/tweet?text=#{@result_for_tweet}", target: "_blank" do %>
-  <%= image_tag "https://logowik.com/content/uploads/images/twitter-x-icon3832.logowik.com.webp",alt: "Twitter Logo", width: 35, height: 35 %>
-  X(twitter)でつぶやく
-<% end %>
+  <div class="mt-2">
+    <p>なお、サプリメントは栄養補助食品です。</p>
+    <p>日常の生活を見直しつつ、健康維持のために補助として使っていきましょう。</p>
+  </div>
+  <div class="m-2">
+    <%= link_to "https://twitter.com/intent/tweet?text=#{@result_for_tweet}", target: "_blank" do %>
+      <%= image_tag('xlogo.png', alt: 'X(Twitter)', size: '35x35') %>
+      X(twitter)でつぶやく
+    <% end %>
+  </div>
+</div>
