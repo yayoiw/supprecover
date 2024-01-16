@@ -11,7 +11,7 @@ class FullMedicalCheckupsController < ApplicationController
     params[:full_medical_checkup][:wbc] = (input_value * 1000).to_s if input_value % 1 != 0
     @full_medical_checkup = @user.full_medical_checkup || @user.build_full_medical_checkup
     if @full_medical_checkup.update(full_medical_checkup_params)
-      redirect_to user_full_medical_checkups_path(@full_medical_checkup.id)
+      redirect_to user_full_medical_checkups_path(@user)
     else
       render :new
     end

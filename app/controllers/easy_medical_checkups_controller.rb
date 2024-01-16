@@ -9,7 +9,7 @@ class EasyMedicalCheckupsController < ApplicationController
   def create
     @easy_medical_checkup = @user.easy_medical_checkup || @user.build_easy_medical_checkup
     if @easy_medical_checkup.update(easy_medical_checkup_params)
-      redirect_to user_easy_medical_checkups_path(@easy_medical_checkup.id)
+      redirect_to user_easy_medical_checkups_path(@user)
     else
       render :new
     end
