@@ -13,6 +13,21 @@ RSpec.describe '簡易版診断機能', type: :system do
       click_on('先へすすむ')
     end
   end
+
+  scenario "新規ユーザー登録" do
+    expect {
+      visit root_path
+      expect(current_path).to eq(before_use_path)
+      page.execute_script('document.querySelectorAll(".fade").forEach(function(element) { element.classList.remove("fade"); })')
+      check('beforeUseCheckBox')
+      click_button('modalButton')
+      fill_in 'user_name', with: user.name
+      click_on('先へすすむ')
+      expect(current_path).to eq root_path
+    }.to change(User, :count).by(1)
+    # 期待する動作 ユーザー登録ができる
+  end
+
   context 'ユーザー名登録後、診断まで' do
     include_examples 'ユーザー名登録まで'
     it '完全版診断が使えない' do
