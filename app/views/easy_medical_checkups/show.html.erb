@@ -1,18 +1,24 @@
 <div class="row">
   <% if @easy_medical_checkup.recommended_supplements.empty? %>
+  <div class="m-3">
     <p>あなたは現在健康であるため、健康診断数値改善のためのサプリは不要になります。</p>
+  </div>
   <% else %>
     <p>あなたにおすすめのサプリは</p>
-    <% @easy_medical_checkup.recommended_supplements.each do |supplement| %>
-      <p><%= link_to supplement.name, "https://jp.iherb.com/search?kw=#{supplement.name}", target: "_blank"%></p>
-      <p><%= supplement.description %></p>
-    <% end %>
+    <div class="m-md-3">
+      <% @easy_medical_checkup.recommended_supplements.each do |supplement| %>
+        <div class="m-3">
+          <p><%= link_to supplement.name, "https://jp.iherb.com/search?kw=#{supplement.name}", target: "_blank"%></p>
+          <p><%= supplement.description %></p>
+        </div>
+      <% end %>
+    </div>
   <% end %>
-  <div class="mt-2">
+  <div class="mt-3">
     <p>なお、サプリメントは栄養補助食品です。</p>
     <p>日常の生活を見直しつつ、健康維持のために補助として使っていきましょう。</p>
   </div>
-  <div class="m-2">
+  <div class="m-3">
     <%= link_to "https://twitter.com/intent/tweet?text=#{@result_for_tweet}", target: "_blank" do %>
       <%= image_tag('xlogo.png', alt: 'X(Twitter)', size: '35x35') %>
       X(twitter)でつぶやく
