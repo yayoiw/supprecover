@@ -1,7 +1,8 @@
 # さぷリカバー
-
+[![Image from Gyazo](https://i.gyazo.com/58dece74bfc66ba989df06f6fefb9032.png)](https://gyazo.com/58dece74bfc66ba989df06f6fefb9032)
 
 ## ■主な使用技術
+
 バックエンド
 Ruby(3.0.2) Ruby on Rails(6.1.2) Rspec
 
@@ -48,10 +49,10 @@ PostgreSQL Heroku
 ・レスポンシブ対応  
 ・結果をX（Twitter）でシェアできる  
 
-　■画面遷移図
+## ■画面遷移図
 
 https://www.figma.com/file/067vzyD29cW4faCASK19Vz/supprecover?type=design&node-id=0%3A1&mode=design&t=9nGSTNOLp9hGtGMW-1
 
-　■ER図
+## 　■ER図
 
 [![Image from Gyazo](https://i.gyazo.com/76972f9fa7bb140483315660130043f0.png)](https://gyazo.com/76972f9fa7bb140483315660130043f0)
