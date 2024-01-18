@@ -17,6 +17,8 @@ PostgreSQL Heroku
 健康診断引っかかった人が診断結果を登録することで  
 次回の健康診断までの間に数値改善できるようおすすめサプリを提案するサービス
 
+[![Image from Gyazo](https://i.gyazo.com/751cf5f9aa2d2bbad2a3524db63e8c31.gif)](https://gyazo.com/751cf5f9aa2d2bbad2a3524db63e8c31)
+
 ## ■メインのターゲットユーザー
 
 健康診断結果がB以下でてっとり早く改善したいと思っている方
